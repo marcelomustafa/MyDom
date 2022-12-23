@@ -1,0 +1,52 @@
+HELP.md
+
+### System files ###
+.DS_Store
+Thumbs.db
+*.log
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### MYDOM ###
+/source/api/csharp/*
+
+/source/api/workspace_spring/*
+/source/api/spring.7z
+
+!/source/api/spring/.mvn/wrapper/maven-wrapper.jar
+!/source/api/spring/.mvn/wrapper/maven-wrapper.properties
+
+/source/api/spring/.apt_generated
+/source/api/spring/.classpath
+/source/api/spring/.factorypath
+/source/api/spring/.project
+/source/api/spring/.settings
+/source/api/spring/.springBeans
+/source/api/spring/.sts4-cache
+
+/source/api/spring/target/*
+!/source/api/spring/src/main/**/target/
+!/source/api/spring/src/test/**/target/
+
+/source/app/angular/.angular/cache
+/source/app/angular/.vscode
+/source/app/angular/connect.lock
+/source/app/angular/node_modules
+/source/app/angular/dist
+/source/app/angular/tmp
+/source/app/angular/out-tsc
+/source/app/angular/bazel-out
+
+/source/app/angular.sass-cache/*
+/source/app/angular/coverage/*
+/source/app/angular/typings/*
+
+### FLUTTER ###
+/source/app/flutter/*
+
+### *** ###
+/bkpConsulta/*
