@@ -46,7 +46,39 @@ Thumbs.db
 /source/app/angular/typings/*
 
 ### FLUTTER ###
-/source/app/flutter/*
+#/source/app/flutter/*
+/source/app/flutter/.idea/*
+
+/source/app/flutter/.atom/*
+/source/app/flutter/.buildlog/*
+/source/app/flutter/.history
+/source/app/flutter/.svn/*
+
+
+# Flutter/Dart/Pub related
+**/source/app/flutter/doc/api/*
+**/source/app/flutter/ios/Flutter/.last_build_id
+/source/app/flutter/.dart_tool/*
+/source/app/flutter/.flutter-plugins
+/source/app/flutter/.flutter-plugins-dependencies
+/source/app/flutter/.packages
+/source/app/flutter/.pub-cache/*
+/source/app/flutter/.pub/*
+/source/app/flutter/build/*
+
+# Web related
+/source/app/flutter/lib/generated_plugin_registrant.dart
+
+# Symbolication related
+/source/app/flutter/app.*.symbols
+
+# Obfuscation related
+/source/app/flutter/app.*.map.json
+
+# Android Studio will place build artifacts here
+/source/app/flutter/android/app/debug
+/source/app/flutter/android/app/profile
+/source/app/flutter/android/app/release
 
 ### *** ###
 /bkpConsulta/*
