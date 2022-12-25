@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import br.com.mariapuri.mydom.component.modelmapper.custom.MapperComponentInterface;
 
 @Component
-public class PaginationComponent {
+public class PaginationTools {
 
   public <E> Page<E> ofList(List<E> content, Pageable pageable){
     return ofList(content, pageable, null);

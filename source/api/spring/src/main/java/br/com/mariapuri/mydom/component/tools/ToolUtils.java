@@ -5,7 +5,7 @@ import java.text.Normalizer;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ToolUtilsComponent {
+public class ToolUtils {
 	
 	public String accentLass(String text) {
 		String normalize = Normalizer.normalize(text,Normalizer.Form.NFD);

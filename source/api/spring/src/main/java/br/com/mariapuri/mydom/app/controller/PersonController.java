@@ -27,8 +27,8 @@ import com.google.common.net.HttpHeaders;
 import br.com.mariapuri.mydom.app.domain.dto.PersonDTO;
 import br.com.mariapuri.mydom.app.domain.model.PersonModel;
 import br.com.mariapuri.mydom.app.service.PersonService;
-import br.com.mariapuri.mydom.component.modelmapper.PersonMapperComponent;
-import br.com.mariapuri.mydom.component.pagination.PaginationComponent;
+import br.com.mariapuri.mydom.component.modelmapper.PersonMapper;
+import br.com.mariapuri.mydom.component.pagination.PaginationTools;
 
 //@AllArgsConstructor
 @RestController
@@ -36,10 +36,10 @@ import br.com.mariapuri.mydom.component.pagination.PaginationComponent;
 public class PersonController {
 
 	private final PersonService personService;
-	private final PersonMapperComponent personMapper;
-	private final PaginationComponent pagination;
+	private final PersonMapper personMapper;
+	private final PaginationTools pagination;
 
-	public PersonController(PersonService personService, PersonMapperComponent personMapper, PaginationComponent pagination) {
+	public PersonController(PersonService personService, PersonMapper personMapper, PaginationTools pagination) {
 		this.personService = personService;
 		this.personMapper = personMapper;
 		this.pagination = pagination;

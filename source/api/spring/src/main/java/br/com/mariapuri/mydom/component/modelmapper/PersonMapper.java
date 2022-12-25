@@ -12,11 +12,11 @@ import br.com.mariapuri.mydom.component.modelmapper.custom.MapperComponentInterf
 
 //@AllArgsConstructor
 @Component
-public class PersonMapperComponent implements MapperComponentInterface<PersonModel, PersonDTO> {
+public class PersonMapper implements MapperComponentInterface<PersonModel, PersonDTO> {
 	
     private ModelMapper modelMapper;
 
-    public PersonMapperComponent(ModelMapper modelMapper) {
+    public PersonMapper(ModelMapper modelMapper) {
       this.modelMapper = modelMapper;
     }
     
