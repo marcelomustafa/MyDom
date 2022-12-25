@@ -15,7 +15,7 @@ import org.springframework.util.StringUtils;
 
 import br.com.mariapuri.mydom.app.domain.dto.PersonDTO;
 import br.com.mariapuri.mydom.app.domain.model.PersonModel;
-import br.com.mariapuri.mydom.component.tools.ToolUtilsComponent;
+import br.com.mariapuri.mydom.component.tools.ToolUtils;
 
 //@AllArgsConstructor
 public class PersonRepositoryCustomImpl implements PersonRepositoryCustom{
@@ -23,9 +23,9 @@ public class PersonRepositoryCustomImpl implements PersonRepositoryCustom{
   @PersistenceContext
   private final EntityManager eManager;
   
-  private final ToolUtilsComponent toolUtils;
+  private final ToolUtils toolUtils;
   
-  public PersonRepositoryCustomImpl(EntityManager eManager, ToolUtilsComponent toolUtils){
+  public PersonRepositoryCustomImpl(EntityManager eManager, ToolUtils toolUtils){
 	  this.eManager = eManager;
 	  this.toolUtils = toolUtils;
   }

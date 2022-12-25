@@ -2,7 +2,7 @@ package br.com.mariapuri.mydom.reports;
 
 import java.util.List;
 
-import org.flywaydb.core.internal.util.StringUtils;
+import org.springframework.util.StringUtils;
 
 import br.com.mariapuri.mydom.app.domain.dto.PersonDTO;
 import br.com.mariapuri.mydom.app.domain.model.UserModel;
