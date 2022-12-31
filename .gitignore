@@ -79,6 +79,7 @@ Thumbs.db
 /source/app/flutter/android/app/debug
 /source/app/flutter/android/app/profile
 /source/app/flutter/android/app/release
+/source/app/flutter/android/srcgradle-repository.gradle/*
 
 ### *** ###
 /bkpConsulta/*
