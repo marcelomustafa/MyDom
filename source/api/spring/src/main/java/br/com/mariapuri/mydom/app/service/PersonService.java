@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.mariapuri.mydom.app.domain.dto.PersonDTO;
@@ -17,11 +18,9 @@ import br.com.mariapuri.mydom.reports.PersonReport;
 @Service
 public class PersonService {
   
-  private final PersonRepository personRepository;
-  
-  public PersonService(PersonRepository personRepository){
-	  this.personRepository = personRepository;
-  }
+	@Autowired
+  private PersonRepository personRepository;
+
 
   public List<PersonModel> findAll() {
     return personRepository.findAll();

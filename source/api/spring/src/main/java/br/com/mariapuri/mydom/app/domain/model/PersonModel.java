@@ -22,6 +22,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import lombok.EqualsAndHashCode;
+
 //@Getter
 //@Setter
 @Entity
@@ -34,7 +36,7 @@ public class PersonModel implements Serializable{
 	private static final long serialVersionUID = 1L;
 
     @Id
-   // @EqualsAndHashCode.Include
+    @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private UUID id;	      
@@ -100,13 +102,13 @@ public class PersonModel implements Serializable{
 			this.email = email;
 		}
 
-		public UserModel getUsersModel() {
-			return usersModel;
-		}
-
-		public void setUsersModel(UserModel usersModel) {
-			this.usersModel = usersModel;
-		}
+//		public UserModel getUsersModel() {
+//			return usersModel;
+//		}
+//
+//		public void setUsersModel(UserModel usersModel) {
+//			this.usersModel = usersModel;
+//		}
 
 		public String getCreatedBy() {
 			return createdBy;
@@ -142,7 +144,6 @@ public class PersonModel implements Serializable{
 
 		public static long getSerialversionuid() {
 			return serialVersionUID;
-		}    
-
+		}
     
 }

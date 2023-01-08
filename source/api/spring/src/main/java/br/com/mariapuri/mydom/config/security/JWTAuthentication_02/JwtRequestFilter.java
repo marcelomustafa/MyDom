@@ -1,3 +1,4 @@
+package br.com.mariapuri.mydom.config.security.JWTAuthentication_02;
 //package br.com.mariapuri.mydom.config.JWTAuthentication;
 //
 //import java.io.IOException;

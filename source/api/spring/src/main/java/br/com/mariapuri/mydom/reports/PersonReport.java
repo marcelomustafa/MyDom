@@ -8,6 +8,7 @@ import br.com.mariapuri.mydom.app.domain.dto.PersonDTO;
 import br.com.mariapuri.mydom.app.domain.model.UserModel;
 import br.com.mariapuri.mydom.reports.custom.BaseReport;
 
+
 public class PersonReport extends BaseReport<PersonDTO, PersonDTO> {
 
   public PersonReport(List<PersonDTO> list, PersonDTO filter, UserModel user) {
@@ -18,7 +19,7 @@ public class PersonReport extends BaseReport<PersonDTO, PersonDTO> {
   private void setParameters() {
 
     var selectedFilters = "";
-    // DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    //DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     setJasperReportName("/reports/report-name.jasper");
     setJasperSheetName("/reports/report-name.jasper");

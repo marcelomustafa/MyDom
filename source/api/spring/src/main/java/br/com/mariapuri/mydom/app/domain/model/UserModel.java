@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,7 +47,7 @@ public class UserModel implements UserDetails, Serializable{
     @Column(name = "id", nullable = false)
     private UUID id;
     
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="person_id")
     private PersonModel person;
     
@@ -56,9 +57,9 @@ public class UserModel implements UserDetails, Serializable{
     @Column(nullable = false, length = 255)
     private String password; 
     
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @AuditJoinTable(name = "aud_user_role")
-    @JoinTable(name = "tbl_user_role" ,
+    @JoinTable(name = "tbl_user_role",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<RoleModel> roles;    

@@ -9,7 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import br.com.mariapuri.mydom.component.modelmapper.custom.MapperComponentInterface;
+import br.com.mariapuri.mydom.component.modelmapper.custom.MapperInterface;
 
 @Component
 public class PaginationTools {
@@ -19,7 +19,7 @@ public class PaginationTools {
   }
 
   @SuppressWarnings(value={"unchecked", "rawtypes"})
-  public <R, E> Page<R> ofList(List<E> content, Pageable pageable, MapperComponentInterface mapper){
+  public <R, E> Page<R> ofList(List<E> content, Pageable pageable, MapperInterface mapper){
     
     var contentSize =  content.size();
     var firstItem = pageable.getPageNumber() * pageable.getPageSize();

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -35,22 +36,22 @@ import br.com.mariapuri.mydom.component.pagination.PaginationTools;
 @RequestMapping("/persons")
 public class PersonController {
 
-	private final PersonService personService;
-	private final PersonMapper personMapper;
-	private final PaginationTools pagination;
+	@Autowired
+	private PersonService personService;
+	
+	@Autowired
+	private PersonMapper personMapper;
+	
+	@Autowired
+	private PaginationTools pagination;
 
-	public PersonController(PersonService personService, PersonMapper personMapper, PaginationTools pagination) {
-		this.personService = personService;
-		this.personMapper = personMapper;
-		this.pagination = pagination;
-	}
 
 	// @PreAuthorize("hasRole('ROLE_ADMIN','ROLE_TRAINEE')")
 	// @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_TRAINEE')")
 	@GetMapping("/all")
 	public ResponseEntity<List<PersonDTO>> getAllPerson() {
-		var personDTO = personMapper.toCollectionDTO(personService.findAll());
-		return ResponseEntity.status(HttpStatus.OK).body(personDTO);
+		var persons = personMapper.toCollectionDTO(personService.findAll());
+		return ResponseEntity.status(HttpStatus.OK).body(persons);
 	}
 
 	@GetMapping("/paged")

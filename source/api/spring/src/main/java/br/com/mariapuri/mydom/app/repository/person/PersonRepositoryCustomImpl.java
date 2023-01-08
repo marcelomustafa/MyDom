@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import br.com.mariapuri.mydom.app.domain.dto.PersonDTO;
@@ -21,14 +22,10 @@ import br.com.mariapuri.mydom.component.tools.ToolUtils;
 public class PersonRepositoryCustomImpl implements PersonRepositoryCustom{
   
   @PersistenceContext
-  private final EntityManager eManager;
-  
-  private final ToolUtils toolUtils;
-  
-  public PersonRepositoryCustomImpl(EntityManager eManager, ToolUtils toolUtils){
-	  this.eManager = eManager;
-	  this.toolUtils = toolUtils;
-  }
+  private EntityManager eManager;
+
+  @Autowired
+  private ToolUtils toolUtils;
 
   
   @Override

@@ -13,8 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import br.com.mariapuri.mydom.config.JwtConfigurer;
-import br.com.mariapuri.mydom.config.JwtTokenProvider;
+import br.com.mariapuri.mydom.config.security.JWTAuthentication.JwtConfigurer;
+import br.com.mariapuri.mydom.config.security.JWTAuthentication.JwtTokenProvider;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -79,6 +79,7 @@ public class WebSecurtiyConfig {
         .antMatchers("/actuator/**").permitAll()
         .antMatchers("/api/v1/auth/token").permitAll()
         .antMatchers("/authenticate").permitAll()
+        
         .antMatchers(HttpMethod.POST).hasRole("ADMIN")
         .antMatchers(HttpMethod.PUT).hasRole("ADMIN")
         .antMatchers(HttpMethod.GET).hasRole("ADMIN")        
@@ -91,8 +92,6 @@ public class WebSecurtiyConfig {
     .and()
     .apply(new JwtConfigurer(jwtTokenProvider));
 //@formatter:on
-	
-		
 		
 		return http.build();
 	}

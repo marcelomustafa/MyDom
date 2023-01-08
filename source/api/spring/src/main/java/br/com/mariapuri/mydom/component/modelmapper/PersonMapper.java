@@ -1,47 +1,23 @@
 package br.com.mariapuri.mydom.component.modelmapper;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import br.com.mariapuri.mydom.app.domain.dto.PersonDTO;
 import br.com.mariapuri.mydom.app.domain.model.PersonModel;
-import br.com.mariapuri.mydom.component.modelmapper.custom.MapperComponentInterface;
+import br.com.mariapuri.mydom.component.modelmapper.custom.BaseMapper;
 
-//@AllArgsConstructor
+
 @Component
-public class PersonMapper implements MapperComponentInterface<PersonModel, PersonDTO> {
-	
-    private ModelMapper modelMapper;
+public class PersonMapper extends BaseMapper<PersonModel, PersonDTO> {
 
-    public PersonMapper(ModelMapper modelMapper) {
-      this.modelMapper = modelMapper;
-    }
-    
-    @Override
-    public PersonDTO toDTO(PersonModel personModel) {
-        return modelMapper.map(personModel, PersonDTO.class);
-    }
-    
-    @Override
-    public List<PersonDTO> toCollectionDTO(List<PersonModel> personModelList){
-        return personModelList.stream()
-                .map(this::toDTO)
-                .collect(Collectors.toList());
-    }
-    
-    @Override
-    public PersonModel toModel(PersonDTO personDTO) {
-        return modelMapper.map(personDTO, PersonModel.class);
-    }
-    
-    @Override
-    public List<PersonModel> toCollectionModel(List<PersonDTO> personDTOList){
-        return personDTOList.stream()
-                .map(this::toModel)
-                .collect(Collectors.toList());
-    }
+	@Override
+	public PersonDTO toDTO(PersonModel item) {	
+		return modelMapper.map(item, PersonDTO.class);
+	}
+
+	@Override
+	public PersonModel toModel(PersonDTO itemDTO) {
+		return modelMapper.map(itemDTO, PersonModel.class);
+	}
 
 }

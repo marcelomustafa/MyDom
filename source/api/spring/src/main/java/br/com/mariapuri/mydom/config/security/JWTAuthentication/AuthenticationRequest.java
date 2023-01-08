@@ -1,4 +1,4 @@
-package br.com.mariapuri.mydom.config;
+package br.com.mariapuri.mydom.config.security.JWTAuthentication;
 
 public class AuthenticationRequest {
 	

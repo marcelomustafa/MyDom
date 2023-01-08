@@ -10,7 +10,7 @@ public class MyDomApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MyDomApplication.class, args);
 		
-		//System.out.println(new BCryptPasswordEncoder().encode("dom123"));
+		System.out.println(new BCryptPasswordEncoder().encode("dom123"));
 		
 	}
 

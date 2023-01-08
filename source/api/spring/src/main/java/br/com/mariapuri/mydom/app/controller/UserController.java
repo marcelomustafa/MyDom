@@ -2,32 +2,33 @@ package br.com.mariapuri.mydom.app.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.mariapuri.mydom.app.domain.model.UserModel;
+import br.com.mariapuri.mydom.app.domain.dto.UserDTO;
 import br.com.mariapuri.mydom.app.service.UserService;
+import br.com.mariapuri.mydom.component.modelmapper.UserMapper;
 
-//@AllArgsConstructor
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
 	
-	private final UserService userService;
+	@Autowired
+	private UserService userService;
 	
-	public UserController(UserService userService){
-		this.userService = userService;	
-	}
+	@Autowired
+	private UserMapper userMapper;
 	
 	
-	//@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
-	@GetMapping
-    public ResponseEntity<List<UserModel>> getAllUser(){
-        return ResponseEntity.status(HttpStatus.OK).body(userService.findAll());
-    }	
-		
-
+	@GetMapping("/all")
+	public ResponseEntity<List<UserDTO>> getAllUser() {
+		var users = userMapper.toCollectionDTO(userService.findAll());
+		return ResponseEntity.status(HttpStatus.OK).body(users);
+	}	
+	
 }
