@@ -1,17 +1,12 @@
 package br.com.mariapuri.mydom.app.domain.model;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -21,180 +16,106 @@ import javax.persistence.Table;
 import org.hibernate.envers.AuditJoinTable;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
-import org.hibernate.envers.NotAudited;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.EqualsAndHashCode;
+import br.com.mariapuri.mydom.app.domain.model.custom.BaseModel;
 
 //@Getter
 //@Setter
 @Entity
 @Table(name = "tbl_user")
-@AuditTable(value="aud_user")
+@AuditTable(value = "aud_user")
 @Audited(withModifiedFlag = true)
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class UserModel implements UserDetails, Serializable{
+//@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+public class UserModel extends BaseModel implements UserDetails, Serializable {
 	private static final long serialVersionUID = 1L;
-	
-    @Id
-    @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private UUID id;
-    
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="person_id")
-    private PersonModel person;
-    
-    @Column(nullable = false, length = 70, unique = true)
-    private String userName;    
 
-    @Column(nullable = false, length = 255)
-    private String password; 
-    
-    @ManyToMany(fetch = FetchType.EAGER)
-    @AuditJoinTable(name = "aud_user_role")
-    @JoinTable(name = "tbl_user_role",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<RoleModel> roles;    
-    
-    @NotAudited
-    @CreatedBy
-    private String createdBy;
-    
-    @NotAudited
-    @CreatedDate
-    private Instant createdDate;
-    
-    @NotAudited
-    @LastModifiedBy
-    private String modifiedBy;
-    
-    @NotAudited
-    @LastModifiedDate
-    private Instant modifiedDate;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "person_id")
+	private PersonModel person;
 
-		public UUID getId() {
-			return id;
-		}
+	@Column(nullable = false, length = 70, unique = true)
+	private String userName;
 
-		public void setId(UUID id) {
-			this.id = id;
-		}
+	@Column(nullable = false, length = 255)
+	private String password;
 
-		public PersonModel getPerson() {
-			return person;
-		}
+	@ManyToMany(fetch = FetchType.EAGER)
+	@AuditJoinTable(name = "aud_user_role")
+	@JoinTable(name = "tbl_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private List<RoleModel> roles;
 
-		public void setPerson(PersonModel person) {
-			this.person = person;
-		}
+	public PersonModel getPerson() {
+		return person;
+	}
 
-		public String getUserName() {
-			return userName;
-		}
+	public void setPerson(PersonModel person) {
+		this.person = person;
+	}
 
-		public void setUserName(String userName) {
-			this.userName = userName;
-		}
+	public String getUserName() {
+		return userName;
+	}
 
-		public String getPassword() {
-			return password;
-		}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-		public void setPassword(String password) {
-			this.password = password;
-		}
+	public String getPassword() {
+		return password;
+	}
 
-		public List<RoleModel> getRoles() {
-			return roles;
-		}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-		public void setRoles(List<RoleModel> roles) {
-			this.roles = roles;
-		}
+	public List<RoleModel> getRoles() {
+		return roles;
+	}
 
-		public String getCreatedBy() {
-			return createdBy;
-		}
+	public void setRoles(List<RoleModel> roles) {
+		this.roles = roles;
+	}
 
-		public void setCreatedBy(String createdBy) {
-			this.createdBy = createdBy;
-		}
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return userName;
+	}
 
-		public Instant getCreatedDate() {
-			return createdDate;
-		}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
-		public void setCreatedDate(Instant createdDate) {
-			this.createdDate = createdDate;
-		}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
-		public String getModifiedBy() {
-			return modifiedBy;
-		}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
-		public void setModifiedBy(String modifiedBy) {
-			this.modifiedBy = modifiedBy;
-		}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-		public Instant getModifiedDate() {
-			return modifiedDate;
-		}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
 
-		public void setModifiedDate(Instant modifiedDate) {
-			this.modifiedDate = modifiedDate;
-		}
-		
-		@Override
-		public String getUsername() {
-			// TODO Auto-generated method stub
-			return userName;
-		}
+		// var roleMapper = new ModelMapper();
 
-
-		@Override
-		public boolean isAccountNonExpired() {
-			// TODO Auto-generated method stub
-			return true;
-		}
-
-
-		@Override
-		public boolean isAccountNonLocked() {
-			// TODO Auto-generated method stub
-			return true;
-		}
-
-
-		@Override
-		public boolean isCredentialsNonExpired() {
-			// TODO Auto-generated method stub
-			return true;
-		}
-
-
-		@Override
-		public boolean isEnabled() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-		
-		@Override
-		public Collection<? extends GrantedAuthority> getAuthorities() {
-			
-			//var roleMapper = new ModelMapper();
-			
-					
 //			this.getRoles().stream()
 //				.forEach(item -> rolesSecurity.add(roleMapper.map(item, RoleSecurity.class)));
-			
+
 //			var roleMapper = new ModelMapper();
 ////			//var
 //			List<RoleSecurity> rolesSecurity = this.getRoles().stream()
@@ -203,8 +124,8 @@ public class UserModel implements UserDetails, Serializable{
 //			
 //			//Collection<RoleSecurity> roleSecurity = Collection
 //			
-			 return getRoles();
-			
-		}		
+		return getRoles();
+
+	}
 
 }
