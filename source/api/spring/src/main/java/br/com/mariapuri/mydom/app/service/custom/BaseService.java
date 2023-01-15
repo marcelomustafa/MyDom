@@ -6,8 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.mariapuri.mydom.exceptionhandler.ThrowExceptionHandler;
-
 public abstract class BaseService<MODEL, ID, REPOSITORY> {
 
 	@Autowired
@@ -22,20 +20,20 @@ public abstract class BaseService<MODEL, ID, REPOSITORY> {
 		return getRepository().findAll();
 	}
 
-	public Optional<MODEL> findById(ID Id) {
-		var oModel = getRepository().findById(Id);
-		if (!oModel.isPresent()) {
-			new ThrowExceptionHandler();
-		}
-		return oModel;
+	public Optional<MODEL> findById(ID id) {
+		return getRepository().findById(id);
 	}
 
-  public MODEL savePerson(MODEL model) {
+  public MODEL save(MODEL model) {
     return getRepository().save(model); 
   }
   
-  public void deletePerson(MODEL person) {
-  	getRepository().delete(person);  
+  public void delete(MODEL model) {
+  	getRepository().delete(model);  
   }
   	
+  public void deleteById(ID id) {
+  	getRepository().deleteById(id);
+  }
+  
 }

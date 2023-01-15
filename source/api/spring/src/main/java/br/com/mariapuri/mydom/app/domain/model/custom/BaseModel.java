@@ -1,7 +1,7 @@
 package br.com.mariapuri.mydom.app.domain.model.custom;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -15,6 +15,8 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.EqualsAndHashCode;
 
@@ -36,7 +38,8 @@ public class BaseModel implements Serializable {
 
 	@NotAudited
 	@CreatedDate
-	private Instant createdDate;
+	@JsonIgnore
+	private LocalDateTime createdDate;
 
 	@NotAudited
 	@LastModifiedBy
@@ -44,7 +47,8 @@ public class BaseModel implements Serializable {
 
 	@NotAudited
 	@LastModifiedDate
-	private Instant lastModifiedDate;
+	@JsonIgnore
+	private LocalDateTime lastModifiedDate;
 
 
 	public UUID getId() {
@@ -63,11 +67,11 @@ public class BaseModel implements Serializable {
 		this.createdBy = createdBy;
 	}
 
-	public Instant getCreatedDate() {
+	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Instant createdDate) {
+	public void setCreatedDate(LocalDateTime createdDate) {
 		this.createdDate = createdDate;
 	}
 
@@ -79,11 +83,11 @@ public class BaseModel implements Serializable {
 		this.lastModifiedBy = lastModifiedBy;
 	}
 
-	public Instant getLastModifiedDate() {
+	public LocalDateTime getLastModifiedDate() {
 		return lastModifiedDate;
 	}
 
-	public void setLastModifiedDate(Instant lastModifiedDate) {
+	public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 

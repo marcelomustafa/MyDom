@@ -12,11 +12,12 @@ public abstract class BaseMapper<M, D> implements MapperInterface<M, D> {
 	@Autowired
 	protected ModelMapper modelMapper;
 
-	
+	@Override
 	public List<D> toCollectionDTO(List<M> modelList) {
 		return modelList.stream().map(this::toDTO).collect(Collectors.toList());
 	}
 
+	@Override
 	public List<M> toCollectionModel(List<D> dtoList) {
 		return dtoList.stream().map(this::toModel).collect(Collectors.toList());
 	}
