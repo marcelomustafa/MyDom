@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.mariapuri.mydom.app.domain.dto.UserDTO;
 import br.com.mariapuri.mydom.app.service.UserService;
-import br.com.mariapuri.mydom.component.modelmapper.UserMapper;
+import br.com.mariapuri.mydom.util.modelmapper.UserMapper;
 
 
 @RestController

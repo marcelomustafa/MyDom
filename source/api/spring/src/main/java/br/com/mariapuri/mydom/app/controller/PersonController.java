@@ -28,8 +28,8 @@ import com.google.common.net.HttpHeaders;
 import br.com.mariapuri.mydom.app.domain.dto.PersonDTO;
 import br.com.mariapuri.mydom.app.domain.model.PersonModel;
 import br.com.mariapuri.mydom.app.service.PersonService;
-import br.com.mariapuri.mydom.component.modelmapper.PersonMapper;
-import br.com.mariapuri.mydom.component.pagination.PaginationTools;
+import br.com.mariapuri.mydom.util.modelmapper.PersonMapper;
+import br.com.mariapuri.mydom.util.pagination.PaginationTools;
 
 //@AllArgsConstructor
 @RestController
@@ -71,7 +71,7 @@ public class PersonController {
 	// @PreAuthorize("hasAuthority('student:write')")
 	@PostMapping
 	public ResponseEntity<PersonDTO> createPerson(@RequestBody PersonDTO personDTO) {
-		var newPerson = personService.savePerson(personMapper.toModel(personDTO));
+		var newPerson = personService.save(personMapper.toModel(personDTO));
 		return ResponseEntity.status(HttpStatus.CREATED).body(personMapper.toDTO(newPerson));
 	}
 
@@ -86,7 +86,7 @@ public class PersonController {
 		} else {
 			var itPerson = existPerson.get();
 			BeanUtils.copyProperties(personDTO, itPerson);
-			var newPerson = personService.savePerson(itPerson);
+			var newPerson = personService.save(itPerson);
 			return ResponseEntity.status(HttpStatus.OK).body(personMapper.toDTO(newPerson));
 		}
 	}
@@ -115,7 +115,7 @@ public class PersonController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Person not founded");
 		} else {
 			var itPerson = existPerson.get();
-			personService.deletePerson(itPerson);
+			personService.delete(itPerson);
 			return ResponseEntity.status(HttpStatus.OK).body(personMapper.toDTO(itPerson));
 		}
 		

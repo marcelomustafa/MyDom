@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
 
 import br.com.mariapuri.mydom.app.domain.dto.PersonDTO;
 import br.com.mariapuri.mydom.app.domain.model.PersonModel;
-import br.com.mariapuri.mydom.component.tools.ToolUtils;
+import br.com.mariapuri.mydom.util.ToolUtils;
 
 //@AllArgsConstructor
 public class PersonRepositoryCustomImpl implements PersonRepositoryCustom{
