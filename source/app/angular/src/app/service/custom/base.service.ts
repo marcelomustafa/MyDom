@@ -15,11 +15,9 @@ export abstract class BaseService {
   };  
 
   constructor(
-    private httpClient: HttpClient
+    protected httpClient: HttpClient
   ) { }
-  
-  public getURI(): String{
-    return this.apiUrl;
 
-  }
+  
+
 }

@@ -16,7 +16,7 @@ export class PersonService extends BaseService {
     super(httpClient);
   }
   
-  public override getURI(): string{
+  public getURI(): string{
     return this.apiUrl + this.apiResource;
   }
 
