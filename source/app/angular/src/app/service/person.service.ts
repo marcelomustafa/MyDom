@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { BaseService } from './custom/base.service';
 
 @Injectable({
@@ -8,24 +9,24 @@ import { BaseService } from './custom/base.service';
 })
 export class PersonService extends BaseService {
 
-  apiResource = '/persons';
+  protected getUrl(): string {
+    return `${environment.urlApi}/persons`
+  }
 
   constructor(
-    httpClient: HttpClient
+    public override http: HttpClient
   ){
-    super(httpClient);
+    super(http);
   }
   
-  public getURI(): string{
-    return this.apiUrl + this.apiResource;
-  }
 
-  public getPersons(): Observable<ResponsePageable >{
-    return this.httpClient.get<ResponsePageable>(this.getURI()) 
+
+  public getPersons(): Observable<any>{
+    return this.http.get<any>(this.getUrl()) 
   }
 
   public postPersons(person: any):Observable<any>{
-    return this.httpClient.post<any>(this.getURI(), person, this.httpOptions);
+    return this.http.post<any>(this.getUrl(), person, this.httpOptions);
   }
 
 }
