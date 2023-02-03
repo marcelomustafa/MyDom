@@ -1,0 +1,124 @@
+=============================================
+=============================================
+*** PL/SQL ***
+
+alter session set NLS_SORT='BINARY_AI';
+alter session set NLS_COMP='LINGUISTIC';
+
+select sys_guid() from dual;
+
+
+
+
+=============================================
+=============================================
+*** NODE.js ***
+
+npm i -g npm
+npm i loadash
+npm i -g nodemon
+
+npm init
+npm i --save axios
+npm i --save-dev axios@0.17.1 -E
+
+npm install --legacy-per-deps
+=============================================
+=============================================
+*** LOMBOK ***
+
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
+@EqualsAndHashCode.Include
+@Id ...
+
+=============================================
+=============================================
+*** FLUTTER ***
+
+Execute one of the following:
+
+flutter channel stable
+flutter pub upgrade
+flutter pub getflutter
+
+
+flutter upgrade --force
+flutter upgrade
+
+flutter pub get
+
+flutter packages get
+
+
+dart pub outdated
+dart pub upgrade --major-versions
+
+flutter pub cache repair
+
+flutter run --ignore-deprecation
+
+
+flutter config --android-sdk {path/to/android/sdk}
+flutter config --android-studio-dir {path/to/android/studio}
+flutter doctor --android-licenses
+
+=============================================
+=============================================
+*** ANGULAR ***
+
+npm install -g @angular/cli
+npm i
+Set-ExecutionPolucy -ExecutionPolicy Bypass
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+ng generate component {name of componet}
+ng generate service {name of service}
+ng generate module app-routing --flat --module=app
+npm install angular-in-memory-web-api --save
+
+
+ng new mydom --minimal
+ng add ngx-bootstrap
+ng add @angular/material
+
+
+ng update @angular/core@14 @angular/cli@14
+ng update @angular/material
+npm install npm@latest –g
+
+npm uninstall -g angular-cli
+npm uninstall -g @angular/cli
+npm cache clean --force
+
+
+npm install -g @angular/cli
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+
+para o sts: Preferences/General/Content Types/Java Properties File: Default encoding: ISO-8859-1
+=============================================
+=============================================
+*** LINUX ***
+
+sudo apt update && sudo apt -y upgrade
+sudo do-release-upgrade -d
+
+lsb_release -a
+
+=============================================
+=============================================
+*** NODE.js ***
+
+npm i -g npm
+npm i loadash
+npm i -g nodemon
+
+npm init
+npm i --save axios
+npm i --save-dev axios@0.17.1 -E
+
+npm install --legacy-per-deps
+=============================================
+=============================================
