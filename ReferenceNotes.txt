@@ -7,7 +7,17 @@ alter session set NLS_COMP='LINGUISTIC';
 
 select sys_guid() from dual;
 
-
+MERGE INTO target_table 
+USING source_table 
+ON search_condition
+    WHEN MATCHED THEN
+        UPDATE SET col1 = value1, col2 = value2,...
+        WHERE <update_condition>
+        [DELETE WHERE <delete_condition>]
+    WHEN NOT MATCHED THEN
+        INSERT (col1,col2,...)
+        values(value1,value2,...)
+        WHERE <insert_condition>;
 
 
 =============================================
@@ -120,5 +130,27 @@ npm i --save axios
 npm i --save-dev axios@0.17.1 -E
 
 npm install --legacy-per-deps
+=============================================
+=============================================
+*** GIT ***
+
+git config --global init.defaultBranch main
+git ini
+git remote add origin https://github.com/marcelomustafa/mydom.git
+git add .
+git commit -m "{MENSAGEM DO COMMIT}"
+git branch --set-upstream-to=origin/<branch> main
+
+git pull origin {main} --allow-unrelated-histories
+git push origin {branch name}
+
+ 
+ 
+ 
+git branch -m main <BRANCH>
+git fetch origin
+git branch -u origin/<BRANCH> <BRANCH>
+git remote set-head origin -a
+
 =============================================
 =============================================
