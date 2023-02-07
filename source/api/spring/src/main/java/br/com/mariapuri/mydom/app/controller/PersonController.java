@@ -51,6 +51,7 @@ public class PersonController {
 
 	// @PreAuthorize("hasRole('ROLE_ADMIN','ROLE_TRAINEE')")
 	// @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_TRAINEE')")
+	@PreAuthorize("hasAnyRole('TRAINEE')")
 	@GetMapping("/all")
 	public ResponseEntity<List<PersonDTO>> getAllPerson() {
 		var persons = personMapper.toCollectionDTO(personService.findAll());

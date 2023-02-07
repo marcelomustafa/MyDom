@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.mariapuri.mydom.app.service.RoleService;
 import br.com.mariapuri.mydom.app.service.UserService;
-import br.com.mariapuri.mydom.config.security.jwt.AuthTokenProvider;
+import br.com.mariapuri.mydom.config.security.jwtAuth.AuthTokenProvider;
 import br.com.mariapuri.mydom.config.security.payload.request.LoginRequest;
 
 @CrossOrigin(origins = "*", maxAge = 3600)

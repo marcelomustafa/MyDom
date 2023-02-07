@@ -1,4 +1,4 @@
-package br.com.mariapuri.mydom.config.security.jwt;
+package br.com.mariapuri.mydom.config.security.jwtAuth;
 
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

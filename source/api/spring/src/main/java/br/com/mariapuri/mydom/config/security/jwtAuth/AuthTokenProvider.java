@@ -1,4 +1,4 @@
-package br.com.mariapuri.mydom.config.security.jwt;
+package br.com.mariapuri.mydom.config.security.jwtAuth;
 
 import java.time.Duration;
 import java.time.Instant;

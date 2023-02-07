@@ -13,9 +13,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import br.com.mariapuri.mydom.config.security.jwt.AuthConfigurer;
-import br.com.mariapuri.mydom.config.security.jwt.AuthEntryPoint;
-import br.com.mariapuri.mydom.config.security.jwt.AuthTokenProvider;
+import br.com.mariapuri.mydom.config.security.jwtAuth.AuthConfigurer;
+import br.com.mariapuri.mydom.config.security.jwtAuth.AuthEntryPoint;
+import br.com.mariapuri.mydom.config.security.jwtAuth.AuthTokenProvider;
 
 @Configuration
 //@EnableWebSecurity /*Disable default configuration Spring Security*/
@@ -46,9 +46,8 @@ public class WebSecurtiyConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http
-		.cors().and().csrf().disable()
+		.httpBasic().and().cors().and().csrf().disable()
 		//.httpBasic().and().cors().and().csrf().disable()
-    //.httpBasic().disable()
 		//.formLogin().disable()
     
     .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
