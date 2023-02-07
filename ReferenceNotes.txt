@@ -5,7 +5,24 @@
 alter session set NLS_SORT='BINARY_AI';
 alter session set NLS_COMP='LINGUISTIC';
 
-select sys_guid() from dual;
+
+*numeric(p,s)
+centenas -> 3
+mil -> 6 + casas decimais
+milhoes -> 9 ...
+bilhoes -> 12 ...
+trilhoes -> 15 ...
+qudrilhoes -> 18 ...
+
+select 
+	row_number() over(order by 1)
+,	sys_guid() UUID
+,	to_char(current_date, 'yyyyMM') competencia
+,	last_day(current_date)
+,	lpad(1,3,'0')
+from dual;
+
+
 
 MERGE INTO target_table 
 USING source_table 
