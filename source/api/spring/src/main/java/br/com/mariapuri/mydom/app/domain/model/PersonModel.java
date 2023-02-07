@@ -22,6 +22,15 @@ import br.com.mariapuri.mydom.app.domain.model.custom.BaseModel;
 //@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class PersonModel extends BaseModel implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public PersonModel(){}
+	
+	public PersonModel(String name, String documento, String email) {
+		this.name = name;
+		this.documento = documento;
+		this.email = email;
+	}
+	
 
 	@Column(nullable = false, length = 70)
 	private String name;

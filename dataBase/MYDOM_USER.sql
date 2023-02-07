@@ -71,6 +71,15 @@ select
 , 'MYDOM'
 , CURRENT_TIMESTAMP
 , 'ROLE_USER'
+from dual
+UNION ALL
+select 
+  SYS_GUID()
+, 'MYDOM'
+, CURRENT_TIMESTAMP
+, 'MYDOM'
+, CURRENT_TIMESTAMP
+, 'ROLE_MODERATOR'
 from dual;
 select * from tbl_role;
 

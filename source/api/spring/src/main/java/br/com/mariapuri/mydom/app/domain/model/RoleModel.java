@@ -10,8 +10,6 @@ import javax.persistence.Table;
 
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
-//import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.GrantedAuthority;
 
 import br.com.mariapuri.mydom.app.domain.model.custom.BaseModel;
 import br.com.mariapuri.mydom.enums.RoleNameType;
@@ -25,7 +23,7 @@ import br.com.mariapuri.mydom.enums.RoleNameType;
 @AuditTable(value = "aud_role")
 @Audited(withModifiedFlag = true)
 //@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class RoleModel extends BaseModel implements Serializable, GrantedAuthority {
+public class RoleModel extends BaseModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Enumerated(EnumType.STRING)
@@ -38,12 +36,6 @@ public class RoleModel extends BaseModel implements Serializable, GrantedAuthori
 
 	public void setName(RoleNameType name) {
 		this.name = name;
-	}
-
-	@Override
-	public String getAuthority() {
-		// TODO Auto-generated method stub
-		return this.getName().toString();
 	}
 
 }

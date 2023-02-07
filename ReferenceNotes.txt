@@ -154,3 +154,15 @@ git remote set-head origin -a
 
 =============================================
 =============================================
+*** SPRING ***
+
+
+UserDetails userDetails =
+	(UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+// userDetails.getUsername()
+// userDetails.getPassword()
+// userDetails.getAuthorities()
+
+=============================================
+=============================================

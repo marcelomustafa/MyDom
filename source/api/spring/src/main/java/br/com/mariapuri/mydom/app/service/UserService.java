@@ -19,5 +19,17 @@ public class UserService extends BaseServiceWithStandartReport<UserModel, UUID, 
 		return  repository.findByUserName (userName);
 	}
  		
+	public Optional<UserModel> findByEmail(String userName){
+		return repository.findByPersonEmail(userName);
+	}
+	
+	public Boolean existsByUserName(String userName) {
+		return repository.existsByUserName(userName);
+	}
+	
+	public Boolean existsByEmail(String email) {
+		return repository.existsByPersonEmail(email);
+	}
+	
 	
 }

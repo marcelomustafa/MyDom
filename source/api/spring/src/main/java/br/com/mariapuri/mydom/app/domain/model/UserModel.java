@@ -1,8 +1,7 @@
 package br.com.mariapuri.mydom.app.domain.model;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +15,6 @@ import javax.persistence.Table;
 import org.hibernate.envers.AuditJoinTable;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.mariapuri.mydom.app.domain.model.custom.BaseModel;
 
@@ -28,8 +25,15 @@ import br.com.mariapuri.mydom.app.domain.model.custom.BaseModel;
 @AuditTable(value = "aud_user")
 @Audited(withModifiedFlag = true)
 //@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class UserModel extends BaseModel implements UserDetails, Serializable {
+public class UserModel extends BaseModel implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+	public UserModel(){}
+	public UserModel(String name, String documento, String email, String userName, String password) {
+		this.person = new PersonModel(name, documento, email);
+		this.userName = userName;
+		this.password = password;
+	}
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "person_id")
@@ -44,7 +48,7 @@ public class UserModel extends BaseModel implements UserDetails, Serializable {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@AuditJoinTable(name = "aud_user_role")
 	@JoinTable(name = "tbl_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private List<RoleModel> roles;
+	private Set<RoleModel> roles;
 
 	public PersonModel getPerson() {
 		return person;
@@ -70,62 +74,12 @@ public class UserModel extends BaseModel implements UserDetails, Serializable {
 		this.password = password;
 	}
 
-	public List<RoleModel> getRoles() {
+	public Set<RoleModel> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<RoleModel> roles) {
+	public void setRoles(Set<RoleModel> roles) {
 		this.roles = roles;
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return userName;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-
-		// var roleMapper = new ModelMapper();
-
-//			this.getRoles().stream()
-//				.forEach(item -> rolesSecurity.add(roleMapper.map(item, RoleSecurity.class)));
-
-//			var roleMapper = new ModelMapper();
-////			//var
-//			List<RoleSecurity> rolesSecurity = this.getRoles().stream()
-//					.map(item -> roleMapper.map(item, RoleSecurity.class))
-//					.toList() ;
-//			
-//			//Collection<RoleSecurity> roleSecurity = Collection
-//			
-		return getRoles();
-
 	}
 
 }
