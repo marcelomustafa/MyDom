@@ -1,4 +1,4 @@
-package br.com.mariapuri.mydom.config.securityCookie.controller;
+package br.com.mariapuri.mydom.config.securityCookie;
 //package br.com.mariapuri.mydom.config.security.controller;
 //
 //import javax.validation.Valid;

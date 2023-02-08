@@ -1,4 +1,4 @@
-package br.com.mariapuri.mydom.config.securityCookie.JWTAuthentication.JWTAuthentication_02;
+package br.com.mariapuri.mydom.config.securityCookie;
 //package br.com.mariapuri.mydom.config.JWTAuthentication;
 //
 //import org.springframework.beans.factory.annotation.Autowired;

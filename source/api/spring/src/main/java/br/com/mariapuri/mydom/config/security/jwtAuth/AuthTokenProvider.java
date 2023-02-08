@@ -9,16 +9,19 @@ import java.util.UUID;
 import java.util.function.Function;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.WebUtils;
 
 import br.com.mariapuri.mydom.app.domain.model.RoleModel;
 import br.com.mariapuri.mydom.config.security.service.UserDetailsServiceImpl;
@@ -65,7 +68,12 @@ public class AuthTokenProvider {
 		tokenSecretKey = Base64.getEncoder().encodeToString(tokenSecretKey.getBytes());
 	}
 	
-  public String createToken(String username, Set<RoleModel> roles) {
+	public String createToken(String username, Set<RoleModel> roles) {
+		return createToken(username,roles, SignatureAlgorithm.HS256);
+	}
+	
+	
+  public String createToken(String username, Set<RoleModel> roles, SignatureAlgorithm signatureAlgorithm ) {
     
   	//UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
   	
@@ -85,11 +93,15 @@ public class AuthTokenProvider {
         .setIssuer(issuer)
         .setIssuedAt(now)
         .setExpiration(validity)
-        .signWith(SignatureAlgorithm.HS256, tokenSecretKey)
+        .signWith(signatureAlgorithm, tokenSecretKey)
         .compact();
-}	
-
-    
+  }
+  
+	public ResponseCookie createTokenCookie(String username, Set<RoleModel> roles) {
+		var token = createToken(username,roles, SignatureAlgorithm.HS512);
+		return  ResponseCookie.from(jwtCookieName, token).path("/api").maxAge(24 * 60 * 60).httpOnly(true).build();
+	} 
+	 
   public Authentication getAuthentication(String token) {
       UserDetails userDetails = this.userDetailsService.loadUserByUsername(getUsername(token));
       return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
@@ -121,12 +133,21 @@ public class AuthTokenProvider {
 	}	
   
   
-  public String resolveToken(HttpServletRequest req) {
-      String bearerToken = req.getHeader("Authorization");
+  public String resolveToken(HttpServletRequest request) {
+      String bearerToken = request.getHeader("Authorization");
       if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
           return bearerToken.substring(7, bearerToken.length());
       }
       return null;
+  }
+  
+  public String resolveTokenCookie(HttpServletRequest request) {
+    Cookie cookie = WebUtils.getCookie(request, jwtCookieName);
+    if (cookie != null) {
+      return cookie.getValue();
+    } else {
+      return null;
+    }
   }
   
   public boolean validateToken(String token) {
@@ -158,39 +179,9 @@ public class AuthTokenProvider {
 
   }
   
-//  public String getJwtFromCookies(HttpServletRequest request) {
-//    Cookie cookie = WebUtils.getCookie(request, jwtCookieName);
-//    if (cookie != null) {
-//      return cookie.getValue();
-//    } else {
-//      return null;
-//    }
-//  }
-  
-//	public ResponseCookie generateJwtCookie(UserDetailsImpl userPrincipal) {
-//		String jwt = generateTokenFromUsername(userPrincipal.getUsername());
-//		ResponseCookie cookie = ResponseCookie.from(jwtCookieName, jwt).path("/api").maxAge(24 * 60 * 60).httpOnly(true).build();
-//		return cookie;
-//	}  
-
-//	public String generateTokenFromUsername(String username) {  
-//		
-//		Date now = Date.from(Instant.now());
-//		Date validity = Date.from(Instant.now().plus(Duration.ofSeconds(validityInMilliseconds)));		
-//		
-//		return Jwts.builder()
-//		    .setSubject(username)
-//		    .setIssuedAt(now)
-//		    .setExpiration(validity)
-//		    .signWith(SignatureAlgorithm.HS512, tokenSecretKey)
-//		    .compact();
-//	}
-
-//  public ResponseCookie getCleanJwtCookie() {
-//    ResponseCookie cookie = ResponseCookie.from(jwtCookieName, null).path("/api").build();
-//    return cookie;
-//  }  	
-	
+  public ResponseCookie getCleanCookie() {
+    return ResponseCookie.from(jwtCookieName, null).path("/api").build();
+  }   
 
   
 }

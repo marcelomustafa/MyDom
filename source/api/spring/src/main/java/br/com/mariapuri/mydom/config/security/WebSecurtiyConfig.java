@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,6 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import br.com.mariapuri.mydom.config.security.jwtAuth.AuthConfigurer;
 import br.com.mariapuri.mydom.config.security.jwtAuth.AuthEntryPoint;
 import br.com.mariapuri.mydom.config.security.jwtAuth.AuthTokenProvider;
+import br.com.mariapuri.mydom.config.security.service.UserDetailsServiceImpl;
 
 @Configuration
 //@EnableWebSecurity /*Disable default configuration Spring Security*/
@@ -31,6 +33,19 @@ public class WebSecurtiyConfig {
   @Autowired
   private AuthEntryPoint unauthorizedHandler;  
   
+  @Autowired
+  UserDetailsServiceImpl userDetailsService;
+  
+  
+  @Bean
+  public DaoAuthenticationProvider authenticationProvider() {
+      DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+       
+      authProvider.setUserDetailsService(userDetailsService);
+      authProvider.setPasswordEncoder(passwordEncoder());
+   
+      return authProvider;
+  }  
   
 	@Bean
 	public AuthenticationManager getAuthenticationManager(AuthenticationConfiguration authConfig) throws Exception {
@@ -81,6 +96,7 @@ public class WebSecurtiyConfig {
 		
     .and()
     .apply(new AuthConfigurer(tokenProvider));	
+		//.apply(new AuthConfigurer(tokenProvider,authenticationProvider()));
 //@formatter:on
 		
 		return http.build();
