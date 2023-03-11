@@ -63,7 +63,7 @@ public class AuthTokenProvider {
   
   
   private static final String CLAIM_USER_NAME_KEY = "UserName";
-  private static final String CLAIM_EMAIL_KEY = "EmailName";	
+  private static final String CLAIM_EMAIL_KEY = "EmailName";
 	
     
 	@Autowired
@@ -226,6 +226,7 @@ public class AuthTokenProvider {
   public ResponseCookie getCleanRefreshCookie() {
   	return ResponseCookie.from(jwtCookieRefreshName, null).path("/api/auth/refreshtoken").build();
   } 
+  
   
 }
 

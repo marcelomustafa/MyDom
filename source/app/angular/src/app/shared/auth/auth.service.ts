@@ -5,6 +5,7 @@ import { environment } from "@environments/environment";
 import * as moment from "moment";
 import { BehaviorSubject, Observable, map } from "rxjs";
 import { AuthUser } from "@auth/auth-user";
+import { AuthStoregeService } from "@auth/auth-storege.service";
 
 const httpOptions = {
   headers: new HttpHeaders({ "Content-Type": "application/json" }),
@@ -22,10 +23,12 @@ export class AuthService {
   private userSubject: BehaviorSubject<AuthUser>;
   public authUser: Observable<AuthUser>;
 
-  constructor(private router: Router, private http: HttpClient) {
-    this.userSubject = new BehaviorSubject(
-      JSON.parse(localStorage.getItem("authUser")!)
-    );
+  constructor(
+    private router: Router, 
+    private http: HttpClient,
+    private authStorege: AuthStoregeService
+  ) {
+    this.userSubject = new BehaviorSubject(authStorege.getUser());
     this.authUser = this.userSubject.asObservable();
   }
 
@@ -34,9 +37,6 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<AuthUser> {
-    console.log('pass for: login');
-    console.log('url: ' + `${this.getUrl()}/signin`);
-    
 
     const login = {
       username: username,
@@ -44,31 +44,26 @@ export class AuthService {
       authTokenType: environment.authTokenType,
     };
 
-    console.log(`username: ' ${login.username} password: ${login.password} authTokenType: ${login.authTokenType}`);
-
     return this.http
       .post<any>(`${this.getUrl()}/signin`, login)
       .pipe(
         map((user) => {
+
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem("authUser", JSON.stringify(user));
+          this.authStorege.setSession(user);
+          
           this.userSubject.next(user);
           return user;
+
         })
       );
-  }
-
-  private setSession(authResult: any){
-    const expiresAt = moment().add(authResult.expiresIn,'second');
-    localStorage.setItem('idToken', authResult.idToken);
-    localStorage.setItem('expiresAt', JSON.stringify(expiresAt.valueOf));
   }
 
   logout(): Observable<any> {
     const response = this.http.post(`${this.getUrl()}/signout`, { }, httpOptions);
 
     // remove user from local storage to log user out
-    localStorage.removeItem('authUser');
+    this.authStorege.clean();
     this.userSubject.next(null!);
   
     this.router.navigate(['/login']);
@@ -87,17 +82,7 @@ export class AuthService {
     );
   }
 
-  getExpiration() {
-    const expiration = localStorage.getItem("expiresAt");
-    const expiresAt = JSON.parse(expiration || "");
-    return moment(expiresAt);
-  }
-
-  isLoggedOut() {
-    return !this.isLoggedIn;
-  }
-
-  private isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
+  public isLoggedIn(): boolean{
+    return this.authStorege.isLoggedIn() ;
   }
 }

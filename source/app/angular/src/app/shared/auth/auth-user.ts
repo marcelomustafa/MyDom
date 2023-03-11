@@ -8,4 +8,5 @@ export class AuthUser extends BaseModel{
   firstName?: string;
   lastName?: string;
   token?: string;
+  expiresAt?: number;
 }
