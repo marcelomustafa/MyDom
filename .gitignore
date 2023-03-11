@@ -15,23 +15,26 @@ Thumbs.db
 /source/api/csharp/*
 
 /source/api/workspace_spring/*
+/source/api/spring/workspace/*
 /source/api/spring.7z
 
-!/source/api/spring/.mvn/wrapper/maven-wrapper.jar
-!/source/api/spring/.mvn/wrapper/maven-wrapper.properties
+!/source/api/spring/project/.mvn/wrapper/maven-wrapper.jar
+!/source/api/spring/project/.mvn/wrapper/maven-wrapper.properties
 
-/source/api/spring/.apt_generated
-/source/api/spring/.classpath
-/source/api/spring/.factorypath
-/source/api/spring/.project
-/source/api/spring/.settings
-/source/api/spring/.springBeans
-/source/api/spring/.sts4-cache
+/source/api/spring/project/.apt_generated
+/source/api/spring/project/.classpath
+/source/api/spring/project/.factorypath
+/source/api/spring/project/.project
+/source/api/spring/project/.settings
+/source/api/spring/project/.springBeans
+/source/api/spring/project/.sts4-cache
 
-/source/api/spring/target/*
-!/source/api/spring/src/main/**/target/
-!/source/api/spring/src/test/**/target/
+/source/api/spring/project/target/*
+!/source/api/spring/project/src/main/**/target/
+!/source/api/spring/project/src/test/**/target/
 
+/source/app/angularBKP/*
+/source/app/angularBKP_v2/*
 /source/app/angular/.angular/cache
 /source/app/angular/.vscode
 /source/app/angular/connect.lock

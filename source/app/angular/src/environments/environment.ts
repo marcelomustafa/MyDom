@@ -1,3 +1,6 @@
 export const environment = {
-  urlApi: 'http://localhost:8080'
+  production: false,
+  hmr: false,
+  apiUrl: 'http://localhost:8080',
+  authTokenType: "TOKEN"
 };

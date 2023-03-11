@@ -37,6 +37,24 @@ ON search_condition
         WHERE <insert_condition>;
 
 
+create table {nome-table} as select * from table;
+
+=============================================
+=============================================
+*** POSTGREE ***
+
+CREATE EXTENSION pgcrypto;
+
+SET timezone = 'America/Los_Angeles';
+SHOW TIMEZONE;
+
+SELECT 
+	gen_random_uuid()
+,	CURRENT_TIMESTAMP	
+; 
+
+
+
 =============================================
 =============================================
 *** NODE.js ***
@@ -50,6 +68,11 @@ npm i --save axios
 npm i --save-dev axios@0.17.1 -E
 
 npm install --legacy-per-deps
+
+npm i -g npm-upgrade
+npm install -g n latest
+ng update @angular/cli @angular/core
+npm update angular-cli -g
 =============================================
 =============================================
 *** LOMBOK ***
@@ -103,11 +126,13 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 ng generate component {name of componet}
 ng generate service {name of service}
-ng generate module app-routing --flat --module=app
+ng generate module {name of module} app-routing --flat --module=app
 npm install angular-in-memory-web-api --save
 
 
 ng new mydom --minimal
+ng new mydom -s=false -t=false -S=true --style="scss" --routing  --directory="."
+
 ng add ngx-bootstrap
 ng add @angular/material
 
@@ -124,7 +149,25 @@ npm cache clean --force
 npm install -g @angular/cli
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
+
+
+ng add @ng-bootstrap/ng-bootstrap
+
 para o sts: Preferences/General/Content Types/Java Properties File: Default encoding: ISO-8859-1
+
+
+JSON.stringfy("", (k,v)=> ?? undefined);
+
+private equalsIgnoringCaseAndSpace(text, other): boolean{
+	return this.equalsIgnoringCase((text ? text : '').replace(' ',''), (other ? other : '').replace(' ',''));
+}
+
+private equalsIgnoringCase(text, other): boolean{
+	return (text ? text : '').localeCompare((other ? other : ''), undefined, { sensitivity: 'base'}) ===0;
+}
+
+
+
 =============================================
 =============================================
 *** LINUX ***
@@ -147,6 +190,12 @@ npm i --save axios
 npm i --save-dev axios@0.17.1 -E
 
 npm install --legacy-per-deps
+
+npm install --save-dev @angularclass/hmr
+Implementation of HMR(Hot Module Replacement) to Angular Project
+
+
+"debug.chrome.useV3": true
 =============================================
 =============================================
 *** GIT ***
@@ -172,6 +221,8 @@ git remote set-head origin -a
 =============================================
 =============================================
 *** SPRING ***
+
+
 
 
 UserDetails userDetails =

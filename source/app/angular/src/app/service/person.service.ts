@@ -1,16 +1,16 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { PersonModel } from '@domain/model/person-model';
+import { BaseService } from '@baseService/base.service';
+import { environment } from '@environments/environment';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { BaseService } from './custom/base.service';
-
 @Injectable({
   providedIn: 'root'
 })
-export class PersonService extends BaseService {
+export class PersonService extends BaseService<PersonModel> {
 
   protected getUrl(): string {
-    return `${environment.urlApi}/persons`
+    return `${environment.apiUrl}/persons`
   }
 
   constructor(
@@ -18,15 +18,10 @@ export class PersonService extends BaseService {
   ){
     super(http);
   }
-  
 
 
-  public getPersons(): Observable<any>{
-    return this.http.get<any>(this.getUrl()) 
-  }
-
-  public postPersons(person: any):Observable<any>{
-    return this.http.post<any>(this.getUrl(), person, this.httpOptions);
+  public postPersons(person: PersonModel):Observable<PersonModel>{
+    return this.http.post<PersonModel>(this.getUrl(), person, this.httpOptions);
   }
 
 }

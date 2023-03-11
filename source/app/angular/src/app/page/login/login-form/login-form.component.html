@@ -1,0 +1,109 @@
+<p>login-form works!</p>
+ <div class="col-md-6 offset-md-3 mt-5">
+    <div class="alert alert-info">
+        Username: test<br />
+        Password: test
+    </div>
+    <div class="card">
+        <h4 class="card-header py-3">Angular 14 JWT Login Example</h4>
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input id="username"  type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && getLoginForm['username'].errors }" />
+                    <div *ngIf="submitted && getLoginForm['username'].errors" class="invalid-feedback">
+                        
+                        <div *ngIf="getLoginForm['username'].errors['required']">Username is required</div> 
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input id="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && getLoginForm['password'].errors }" />
+                    <div *ngIf="submitted && getLoginForm['password'].errors" class="invalid-feedback">
+                        <div *ngIf="getLoginForm['password'].errors['required']">Password is required</div> 
+                    </div>
+                </div>
+                <button type="submit" [disabled]="loading" class="btn btn-primary" (click)="onSubmit()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error }}</div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+<!--
+<div class="col-md-12">
+  <div class="card card-container">
+    <img
+      id="profile-img"
+      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      class="profile-img-card"
+    />
+    <form
+      *ngIf="!isLoggedIn"
+      name="form"
+      (ngSubmit)="getForm.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          [(ngModel)]="form.username"
+          required
+          #username="ngModel"
+          [ngClass]="{ 'is-invalid': getForm.submitted && username.errors }"
+        />
+        <div
+          *ngIf="username.errors && getForm.submitted"
+          class="invalid-feedback"
+        >
+          Username is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="form.password"
+          required
+          minlength="6"
+          #password="ngModel"
+          [ngClass]="{ 'is-invalid': getForm.submitted && password.errors }"
+        />
+        <div
+          *ngIf="password.errors && getForm.submitted"
+          class="invalid-feedback"
+        >
+          <div *ngIf="password.errors['required']">Password is required</div>
+          <div *ngIf="password.errors['minlength']">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Login</button>
+      </div>
+      <div class="form-group">
+        <div
+          *ngIf="getForm.submitted && isLoginFailed"
+          class="alert alert-danger"
+          role="alert"
+        >
+          Login failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+      Logged in as {{ roles }}.
+    </div>
+  </div>
+</div> -->
