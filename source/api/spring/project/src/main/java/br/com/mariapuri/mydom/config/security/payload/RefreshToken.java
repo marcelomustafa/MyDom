@@ -14,7 +14,7 @@ import br.com.mariapuri.mydom.app.domain.model.custom.BaseModel;
 //@Getter
 //@Setter
 @Entity
-@Table(name = "tbl_refreshtoken")
+@Table(name = "tbl_refresh_token")
 //@AuditTable(value = "aud_user")
 //@Audited(withModifiedFlag = true)
 //@EqualsAndHashCode(onlyExplicitlyIncluded = true)

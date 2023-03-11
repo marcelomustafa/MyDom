@@ -1,5 +1,7 @@
 package br.com.mariapuri.mydom.config.audit.domain;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -11,10 +13,10 @@ import br.com.mariapuri.mydom.config.audit.listener.AuditRevisionListenerImpl;
 
 @Entity
 @Table(name = "aud_revision_info")
-//@AttributeOverrides({ 
-//	@AttributeOverride(name = "timestamp", column = @Column(name = "rev_timestamp")),
+@AttributeOverrides({ 
+	@AttributeOverride(name = "timestamp", column = @Column(name = "rev_timestamp")),
 //  @AttributeOverride(name = "id", column = @Column(name = "revision_id")) 
-//})
+})
 @RevisionEntity(AuditRevisionListenerImpl.class)
 public class AuditRevisionEntity extends DefaultRevisionEntity {
 	private static final long serialVersionUID = 1L;

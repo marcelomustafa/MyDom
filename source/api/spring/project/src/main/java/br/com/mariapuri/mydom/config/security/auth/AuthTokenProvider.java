@@ -55,10 +55,11 @@ public class AuthTokenProvider {
   @Value("${security.jwt.audience}")
   private String audience;
 
-  @Value("${security.jwt.token.expire-length-ms:3600000}") // 1h
+  @Value("${security.jwt.token.expire-length-ms:60000}") // 1h
   private long validityInMilliseconds;  
 
-
+  @Value("${security.jwt.token.refresh-expire-length:180000}") // 2h
+  private long validityRefreshInMilliseconds;  
   
   
   private static final String CLAIM_USER_NAME_KEY = "UserName";
@@ -90,6 +91,7 @@ public class AuthTokenProvider {
   	claims.put(CLAIM_USER_NAME_KEY, "userPrincipal.getUsername()");
   	claims.put(CLAIM_EMAIL_KEY, "userPrincipal.getEmail()");  	
     
+  	
 		Date now = Date.from(Instant.now());
 		Date validity = Date.from(Instant.now().plus(Duration.ofSeconds(validityInMilliseconds)));
     
@@ -104,7 +106,7 @@ public class AuthTokenProvider {
   
 	public ResponseCookie createTokenCookie(String username, Set<RoleModel> roles) {
 		var token = createToken(username,roles, SignatureAlgorithm.HS512);
-		return  ResponseCookie.from(jwtCookieName, token).path("/api").maxAge(24 * 60 * 60).httpOnly(true).build();
+		return  ResponseCookie.from(jwtCookieName, token).path("/api").maxAge(60).httpOnly(true).build(); //24 * 60 * 60
 	} 
 	
   public ResponseCookie generateRefreshJwtCookie(String refreshToken) {
@@ -129,7 +131,7 @@ public class AuthTokenProvider {
   
   
   private ResponseCookie generateCookie(String name, String value, String path) {
-    ResponseCookie cookie = ResponseCookie.from(name, value).path(path).maxAge(24 * 60 * 60).httpOnly(true).build();
+    ResponseCookie cookie = ResponseCookie.from(name, value).path(path).maxAge(60).httpOnly(true).build(); //24 * 60 * 60
     return cookie;
   }  
   
@@ -189,15 +191,16 @@ public class AuthTokenProvider {
   
   public boolean validateToken(String token) {
   	Date now = Date.from(Instant.now());
+  	Date limit = Date.from(Instant.now().plusSeconds(validityInMilliseconds + validityRefreshInMilliseconds));
   	
     try {
     	
     	Jws<Claims> claims = Jwts.parser().setSigningKey(tokenSecretKey).parseClaimsJws(token);
-      if (claims.getBody().getExpiration().before(now)) {
+      if (claims.getBody().getExpiration().before(now) || claims.getBody().getExpiration().after(limit)) {
         return false;
       }    	
-      
       return true;
+      
     } catch (SignatureException e) {
       logger.error("Invalid JWT signature: {}", e.getMessage());
     } catch (MalformedJwtException e) {
