@@ -89,32 +89,38 @@ public class AuthController {
 			String username = loginRequest.getUsername();
 			String password = loginRequest.getPassword();
 			
+			
+			Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+			
+			UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+			List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
+			    .collect(Collectors.toList());
+			
+			
+			RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
+			
 			switch (loginRequest.getAuthTokenType()) {
 			case TOKEN:
-				authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 				String token = tokenProvider.createToken(username, this.userService.findByUserName(username)
 				    .orElseThrow(() -> new UsernameNotFoundException("Username " + username + "not found")).getRoles());
-
-				Map<Object, Object> model = new HashMap<>();
-				model.put("username", username);
-				model.put("token", token);
-			
-				return ResponseEntity.status(HttpStatus.OK).body(model);
+				
+//				Map<Object, Object> model = new HashMap<>();
+//				model.put("username", username);
+//				model.put("token", token);
+//				return ResponseEntity.status(HttpStatus.OK).body(model);
+				
+		    return ResponseEntity.status(HttpStatus.OK)
+            .body(new UserInfoResponse(userDetails.getId(), 
+            													 userDetails.getUsername(), 
+            													 userDetails.getEmail(), 
+            													 token, 
+            													 roles));						
 
 			case COOKIE:
-				Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-
+				
 				ResponseCookie cookie = tokenProvider.createTokenCookie(username, this.userService.findByUserName(username)
 				    .orElseThrow(() -> new UsernameNotFoundException("Username " + username + "not found")).getRoles());				
-				
-				SecurityContextHolder.getContext().setAuthentication(authentication);
-				UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-				
-				List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
-				    .collect(Collectors.toList());
-
-				
-				RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
 				
 				ResponseCookie jwtRefreshCookie = tokenProvider.generateRefreshJwtCookie(refreshToken.getToken());
 				
