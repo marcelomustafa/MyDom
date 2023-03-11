@@ -106,7 +106,7 @@ public class AuthTokenProvider {
   
 	public ResponseCookie createTokenCookie(String username, Set<RoleModel> roles) {
 		var token = createToken(username,roles, SignatureAlgorithm.HS512);
-		return  ResponseCookie.from(jwtCookieName, token).path("/api").maxAge(60).httpOnly(true).build(); //24 * 60 * 60
+		return  ResponseCookie.from(jwtCookieName, token).path("/api").maxAge(validityInMilliseconds).httpOnly(true).build(); //24 * 60 * 60
 	} 
 	
   public ResponseCookie generateRefreshJwtCookie(String refreshToken) {
@@ -131,7 +131,7 @@ public class AuthTokenProvider {
   
   
   private ResponseCookie generateCookie(String name, String value, String path) {
-    ResponseCookie cookie = ResponseCookie.from(name, value).path(path).maxAge(60).httpOnly(true).build(); //24 * 60 * 60
+    ResponseCookie cookie = ResponseCookie.from(name, value).path(path).maxAge(validityInMilliseconds).httpOnly(true).build(); //24 * 60 * 60
     return cookie;
   }  
   
