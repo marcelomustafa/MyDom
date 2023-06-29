@@ -24,7 +24,8 @@ export class AuthStoregeService {
     // window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
     try {
       //user.expiresAt = moment().add(user.expiresIn,'second');
-      user.expiresAt = moment().add(environment.tokenExpiresIn ,'second');
+      user.expiresAt = moment().add(environment.tokenExpiresIn ,'millisecond');
+
       localStorage.removeItem(USER_KEY);
       localStorage.setItem(USER_KEY, JSON.stringify(user));
     } catch (e) {}

@@ -144,8 +144,8 @@ public class AuthController {
 
 	}
 	
-  @PostMapping("/refreshtoken")
-  public ResponseEntity<?> refreshtoken(HttpServletRequest request) {
+  @PostMapping("/refreshcookie")
+  public ResponseEntity<?> refreshcookie(HttpServletRequest request) {
     String refreshToken = tokenProvider.getJwtRefreshFromCookies(request);
     
     if ((refreshToken != null) && (refreshToken.length() > 0)) {
@@ -168,6 +168,14 @@ public class AuthController {
     return ResponseEntity.badRequest().body(new MessageResponse("Refresh Token is empty!"));
   }
 
+  
+  @PostMapping("/refreshtoken")
+  public ResponseEntity<?> refreshtoken(HttpServletRequest request) {
+  	String token = tokenProvider.resolveTokenCookie((HttpServletRequest) request);
+  	return null;
+  }
+  
+  
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		if (userService.existsByUserName(signUpRequest.getUsername())) {

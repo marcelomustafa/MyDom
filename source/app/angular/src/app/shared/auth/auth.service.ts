@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { environment } from "@environments/environment";
-import * as moment from "moment";
 import { BehaviorSubject, Observable, map } from "rxjs";
 import { AuthUser } from "@auth/auth-user";
 import { AuthStoregeService } from "@auth/auth-storege.service";
@@ -51,7 +50,6 @@ export class AuthService {
 
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           this.authStorege.setSession(user);
-          
           this.userSubject.next(user);
           return user;
 
@@ -85,4 +83,5 @@ export class AuthService {
   public isLoggedIn(): boolean{
     return this.authStorege.isLoggedIn() ;
   }
+  
 }

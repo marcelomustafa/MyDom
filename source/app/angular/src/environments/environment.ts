@@ -3,5 +3,5 @@ export const environment = {
   hmr: false,
   apiUrl: 'http://localhost:8080',
   authTokenType: "TOKEN",
-  tokenExpiresIn: 60
+  tokenExpiresIn: 60000
 };

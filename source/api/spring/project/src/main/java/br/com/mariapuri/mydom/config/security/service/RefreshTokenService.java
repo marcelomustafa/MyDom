@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import br.com.mariapuri.mydom.app.repository.user.UserRepository;
+import br.com.mariapuri.mydom.config.security.auth.AuthTokenProvider;
 import br.com.mariapuri.mydom.config.security.payload.RefreshToken;
 import br.com.mariapuri.mydom.config.security.repository.RefreshTokenRepository;
 import br.com.mariapuri.mydom.exceptionhandler.trowexceptionhandler.TokenRefreshException;
@@ -18,9 +19,8 @@ import br.com.mariapuri.mydom.exceptionhandler.trowexceptionhandler.TokenRefresh
 @Service
 public class RefreshTokenService {
 	
-  @Value("${security.jwt.token.refresh-expire-length-ms:3600000}") // 1h
-  private long refreshTokenDurationMs;  
-
+	@Autowired
+	private AuthTokenProvider authProvider;
   
   @Autowired
   private RefreshTokenRepository refreshTokenRepository;
@@ -34,13 +34,11 @@ public class RefreshTokenService {
 
   public RefreshToken createRefreshToken(UUID userId) {
     RefreshToken refreshToken = new RefreshToken();
-
-    refreshToken.setUser(userRepository.findById(userId).get());
-    refreshToken.setExpiryDate(Instant.now().plusMillis(refreshTokenDurationMs));
+    refreshToken = refreshTokenRepository.findByUserId(userId).get();
+    refreshToken.setExpiryDate(Instant.now().plusMillis(authProvider.getValidityRefreshIn()));
     refreshToken.setToken(UUID.randomUUID().toString());
 
-    refreshToken = refreshTokenRepository.save(refreshToken);
-    return refreshToken;
+    return refreshTokenRepository.save(refreshToken);
   }
 
   public RefreshToken verifyExpiration(RefreshToken token) {

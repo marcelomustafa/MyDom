@@ -55,10 +55,10 @@ public class AuthTokenProvider {
   @Value("${security.jwt.audience}")
   private String audience;
 
-  @Value("${security.jwt.token.expire-length-ms:60000}") // 1h
+  @Value("${security.jwt.token.expire-length-ms:900000}") //15minutos
   private long validityInMilliseconds;  
 
-  @Value("${security.jwt.token.refresh-expire-length:180000}") // 2h
+  @Value("${security.jwt.token.refresh-expire-length:1200000}") //20minutos
   private long validityRefreshInMilliseconds;  
   
   
@@ -93,7 +93,7 @@ public class AuthTokenProvider {
     
   	
 		Date now = Date.from(Instant.now());
-		Date validity = Date.from(Instant.now().plus(Duration.ofSeconds(validityInMilliseconds)));
+		Date validity = Date.from(Instant.now().plus(Duration.ofMillis(validityInMilliseconds)));
     
     return Jwts.builder()
         .setClaims(claims)
@@ -106,7 +106,7 @@ public class AuthTokenProvider {
   
 	public ResponseCookie createTokenCookie(String username, Set<RoleModel> roles) {
 		var token = createToken(username,roles, SignatureAlgorithm.HS512);
-		return  ResponseCookie.from(jwtCookieName, token).path("/api").maxAge(validityInMilliseconds).httpOnly(true).build(); //24 * 60 * 60
+		return  ResponseCookie.from(jwtCookieName, token).path("/api").maxAge(validityInMilliseconds / 1000).httpOnly(true).build(); //24 * 60 * 60
 	} 
 	
   public ResponseCookie generateRefreshJwtCookie(String refreshToken) {
@@ -131,7 +131,7 @@ public class AuthTokenProvider {
   
   
   private ResponseCookie generateCookie(String name, String value, String path) {
-    ResponseCookie cookie = ResponseCookie.from(name, value).path(path).maxAge(validityInMilliseconds).httpOnly(true).build(); //24 * 60 * 60
+    ResponseCookie cookie = ResponseCookie.from(name, value).path(path).maxAge(validityInMilliseconds / 1000).httpOnly(true).build(); //24 * 60 * 60
     return cookie;
   }  
   
@@ -191,7 +191,7 @@ public class AuthTokenProvider {
   
   public boolean validateToken(String token) {
   	Date now = Date.from(Instant.now());
-  	Date limit = Date.from(Instant.now().plusSeconds(validityInMilliseconds + validityRefreshInMilliseconds));
+  	Date limit = Date.from(Instant.now().plusMillis(validityInMilliseconds + validityRefreshInMilliseconds));
   	
     try {
     	
@@ -227,6 +227,13 @@ public class AuthTokenProvider {
   	return ResponseCookie.from(jwtCookieRefreshName, null).path("/api/auth/refreshtoken").build();
   } 
   
+  public long getValidityIn() {
+  	return validityInMilliseconds;
+  }
+  
+  public long getValidityRefreshIn() {
+  	return validityRefreshInMilliseconds;
+  }
   
 }
 

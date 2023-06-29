@@ -14,6 +14,8 @@ import br.com.mariapuri.mydom.config.security.payload.RefreshToken;
 public interface RefreshTokenRepository  extends JpaRepository<RefreshToken, UUID> {
 
   Optional<RefreshToken> findByToken(String token);
+  
+  Optional<RefreshToken> findByUserId(UUID userId);
 
   @Modifying
   int deleteByUser(UserModel user);	
