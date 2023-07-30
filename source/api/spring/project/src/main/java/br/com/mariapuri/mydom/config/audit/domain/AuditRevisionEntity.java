@@ -9,7 +9,11 @@ import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "aud_revision_info")
 @AttributeOverrides({ 
@@ -29,31 +33,4 @@ public class AuditRevisionEntity extends DefaultRevisionEntity {
 	@Column(name = "username")
 	private String username;
 
-	
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	
-	public String getUserIp() {
-		return userIp;
-	}
-
-	public void setUserIp(String userIp) {
-		this.userIp = userIp;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	
 }

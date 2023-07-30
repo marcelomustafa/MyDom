@@ -85,8 +85,8 @@ public class AuthController {
 
 		try {
 
-			String username = loginRequest.getUsername();
-			String password = loginRequest.getPassword();
+			String username = loginRequest.username();
+			String password = loginRequest.password();
 			
 			
 			Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
@@ -99,7 +99,7 @@ public class AuthController {
 			
 			RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
 			
-			switch (loginRequest.getAuthTokenType()) {
+			switch (loginRequest.authTokenType()) {
 			case TOKEN:
 				String token = tokenProvider.createToken(username, this.userService.findByUserName(username)
 				    .orElseThrow(() -> new UsernameNotFoundException("Username " + username + "not found")).getRoles());
@@ -177,19 +177,19 @@ public class AuthController {
   
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-		if (userService.existsByUserName(signUpRequest.getUsername())) {
+		if (userService.existsByUserName(signUpRequest.username())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
 		}
 
-		if (userService.existsByEmail(signUpRequest.getEmail())) {
+		if (userService.existsByEmail(signUpRequest.email())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
 		}
 
 		// Create new user's account
-		UserModel user = new UserModel(signUpRequest.getName(), signUpRequest.getDocumento(), signUpRequest.getEmail(),
-		    signUpRequest.getUsername(), encoder.encode(signUpRequest.getPassword()));
+		UserModel user = new UserModel(signUpRequest.name(), signUpRequest.documento(), signUpRequest.email(),
+		    signUpRequest.username(), encoder.encode(signUpRequest.password()));
 
-		Set<String> strRoles = signUpRequest.getRole();
+		Set<String> strRoles = signUpRequest.role();
 		Set<RoleModel> roles = new HashSet<>();
 
 		if (strRoles == null) {
