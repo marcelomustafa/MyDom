@@ -1,13 +1,13 @@
 package br.com.mariapuri.mydom.config.audit;
 
-import javax.persistence.EntityManagerFactory;
-
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+import jakarta.persistence.EntityManagerFactory;
 
 @Configuration
 @EnableJpaAuditing(auditorAwareRef = "customAuditProvider")

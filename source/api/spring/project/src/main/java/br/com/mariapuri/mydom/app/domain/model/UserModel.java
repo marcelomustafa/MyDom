@@ -3,20 +3,19 @@ package br.com.mariapuri.mydom.app.domain.model;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import org.hibernate.envers.AuditJoinTable;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
 import br.com.mariapuri.mydom.app.domain.model.custom.BaseModel;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 //@Getter
 //@Setter

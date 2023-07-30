@@ -2,14 +2,13 @@ package br.com.mariapuri.mydom.config.security.payload;
 
 import java.time.Instant;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import br.com.mariapuri.mydom.app.domain.model.UserModel;
 import br.com.mariapuri.mydom.app.domain.model.custom.BaseModel;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 //@Getter
 //@Setter

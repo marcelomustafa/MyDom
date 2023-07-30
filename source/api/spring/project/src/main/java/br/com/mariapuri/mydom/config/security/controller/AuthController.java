@@ -8,9 +8,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -48,6 +45,8 @@ import br.com.mariapuri.mydom.config.security.service.RefreshTokenService;
 import br.com.mariapuri.mydom.config.security.service.UserDetailsImpl;
 import br.com.mariapuri.mydom.enums.RoleNameType;
 import br.com.mariapuri.mydom.exceptionhandler.trowexceptionhandler.TokenRefreshException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

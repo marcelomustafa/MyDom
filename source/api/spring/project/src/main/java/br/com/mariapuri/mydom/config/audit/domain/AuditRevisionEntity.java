@@ -1,15 +1,14 @@
 package br.com.mariapuri.mydom.config.audit.domain;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import org.hibernate.envers.DefaultRevisionEntity;
 import org.hibernate.envers.RevisionEntity;
 
 import br.com.mariapuri.mydom.config.audit.listener.AuditRevisionListenerImpl;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "aud_revision_info")

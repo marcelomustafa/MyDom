@@ -1,7 +1,5 @@
 package br.com.mariapuri.mydom.config.security.service;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.mariapuri.mydom.app.domain.model.UserModel;
 import br.com.mariapuri.mydom.app.service.UserService;
+import jakarta.transaction.Transactional;
 
 
 @Service

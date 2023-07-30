@@ -7,7 +7,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,10 +20,10 @@ import br.com.mariapuri.mydom.config.security.service.UserDetailsServiceImpl;
 
 @Configuration
 //@EnableWebSecurity /*Disable default configuration Spring Security*/
-@EnableGlobalMethodSecurity(
-    // securedEnabled = true,
-    // jsr250Enabled = true,
-    prePostEnabled = true)
+//@EnableGlobalMethodSecurity(
+//    // securedEnabled = true,
+//    // jsr250Enabled = true,
+//    prePostEnabled = true)
 public class WebSecurtiyConfig {
 	
   @Autowired
@@ -72,24 +71,24 @@ public class WebSecurtiyConfig {
     .and()
         .authorizeRequests()
         
-        //.antMatchers("/api/auth/**").permitAll()
+        //.requestMatchers("/api/auth/**").permitAll()
         
-        //.antMatchers("/api/auth/**").permitAll()
-        //.antMatchers("/persons/**").permitAll()
-        //.antMatchers("/me").permitAll()
+        //.requestMatchers("/api/auth/**").permitAll()
+        //.requestMatchers("/persons/**").permitAll()
+        //.requestMatchers("/me").permitAll()
         
-        .antMatchers("/api/auth/signin").permitAll()
-        //.antMatchers("/actuator/**").permitAll()
-        //.antMatchers("/api/v1/auth/token").permitAll()
-        //.antMatchers("/authenticate").permitAll()
+        .requestMatchers("/api/auth/signin").permitAll()
+        //.requestMatchers("/actuator/**").permitAll()
+        //.requestMatchers("/api/v1/auth/token").permitAll()
+        //.requestMatchers("/authenticate").permitAll()
         
-        .antMatchers(HttpMethod.POST).hasRole("ADMIN")
-        .antMatchers(HttpMethod.PUT).hasRole("ADMIN")
-        .antMatchers(HttpMethod.GET).hasRole("ADMIN")        
+        .requestMatchers(HttpMethod.POST).hasRole("ADMIN")
+        .requestMatchers(HttpMethod.PUT).hasRole("ADMIN")
+        .requestMatchers(HttpMethod.GET).hasRole("ADMIN")        
         
-        //.antMatchers(HttpMethod.GET, "/vehicles/**").permitAll()
-        //.antMatchers(HttpMethod.DELETE, "/vehicles/**").hasRole("ADMIN")
-        //.antMatchers(HttpMethod.GET, "/v1/vehicles/**").permitAll()
+        //.requestMatchers(HttpMethod.GET, "/vehicles/**").permitAll()
+        //.requestMatchers(HttpMethod.DELETE, "/vehicles/**").hasRole("ADMIN")
+        //.requestMatchers(HttpMethod.GET, "/v1/vehicles/**").permitAll()
         
         
     .anyRequest().authenticated()

@@ -8,10 +8,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Function;
 
-import javax.annotation.PostConstruct;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +30,9 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
+import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Component
 public class AuthTokenProvider {

@@ -1,6 +1,6 @@
 package br.com.mariapuri.mydom.app.domain.dto;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 public class MyDomDTO {
 	

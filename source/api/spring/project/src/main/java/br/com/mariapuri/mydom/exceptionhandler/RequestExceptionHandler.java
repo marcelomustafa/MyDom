@@ -26,7 +26,7 @@ public class RequestExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	private MessageSource messageSource;
 	
-	@Override
+	//@Override <<--- VER COMO TRATAR NA 3.0
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 

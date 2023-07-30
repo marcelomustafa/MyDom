@@ -4,10 +4,7 @@ import java.time.Instant;
 import java.util.Optional;
 import java.util.UUID;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import br.com.mariapuri.mydom.app.repository.user.UserRepository;
@@ -15,6 +12,7 @@ import br.com.mariapuri.mydom.config.security.auth.AuthTokenProvider;
 import br.com.mariapuri.mydom.config.security.payload.RefreshToken;
 import br.com.mariapuri.mydom.config.security.repository.RefreshTokenRepository;
 import br.com.mariapuri.mydom.exceptionhandler.trowexceptionhandler.TokenRefreshException;
+import jakarta.transaction.Transactional;
 
 @Service
 public class RefreshTokenService {

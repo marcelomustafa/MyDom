@@ -1,0 +1,4 @@
+https://servicodados.ibge.gov.br/api/docs/localidades
+https://unstats.un.org/unsd/methodology/m49/
+
+https://servicodados.ibge.gov.br/api/docs/paises

@@ -2,15 +2,14 @@ package br.com.mariapuri.mydom.app.domain.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 
 import br.com.mariapuri.mydom.app.domain.model.custom.BaseModel;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
 
 //@Getter
 //@Setter

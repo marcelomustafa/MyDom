@@ -59,6 +59,8 @@ SELECT
 =============================================
 *** NODE.js ***
 
+node -v
+
 npm i -g npm
 npm i loadash
 npm i -g nodemon
@@ -119,6 +121,8 @@ flutter doctor --android-licenses
 =============================================
 *** ANGULAR ***
 
+ng version
+
 npm install -g @angular/cli
 npm i
 Set-ExecutionPolucy -ExecutionPolicy Bypass
@@ -177,6 +181,15 @@ sudo do-release-upgrade -d
 
 lsb_release -a
 
+
+=============================================
+=============================================
+*** NPM ***
+
+npm -version
+npm update -g
+
+
 =============================================
 =============================================
 *** NODE.js ***
@@ -223,7 +236,7 @@ git remote set-head origin -a
 *** SPRING ***
 
 
-
+server.port:8080
 
 UserDetails userDetails =
 	(UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

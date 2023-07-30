@@ -1,10 +1,9 @@
 package br.com.mariapuri.mydom.config.security.payload.request;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.validation.constraints.NotBlank;
-
 import br.com.mariapuri.mydom.enums.AuthTokenLoginType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotBlank;
 
 public class LoginRequest {
 	
