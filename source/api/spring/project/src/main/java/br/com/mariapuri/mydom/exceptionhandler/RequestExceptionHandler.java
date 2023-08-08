@@ -18,14 +18,19 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import br.com.mariapuri.mydom.exceptionhandler.exceptionbody.ExceptionHandlerValidation;
-import lombok.AllArgsConstructor;
 
 @ControllerAdvice
-@AllArgsConstructor
 public class RequestExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	private MessageSource messageSource;
 	
+
+	public RequestExceptionHandler(MessageSource messageSource) {
+		super();
+		this.messageSource = messageSource;
+	}
+
+
 	//@Override <<--- VER COMO TRATAR NA 3.0
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {

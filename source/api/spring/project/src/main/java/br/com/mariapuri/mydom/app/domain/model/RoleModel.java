@@ -12,11 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "tbl_role")
 @AuditTable(value = "aud_role")
@@ -25,8 +21,18 @@ import lombok.Setter;
 public class RoleModel extends BaseModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "name", nullable = false, unique = true)
 	private RoleNameType name;
+
+	
+	public RoleNameType getName() {
+		return name;
+	}
+
+	public void setName(RoleNameType name) {
+		this.name = name;
+	}
 
 }

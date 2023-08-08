@@ -10,19 +10,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "tbl_person")
 @AuditTable(value = "aud_person")
 @Audited(withModifiedFlag = true)
-@NoArgsConstructor
-@AllArgsConstructor
+
 //@EntityListeners(AuditingEntityListener.class)
 //@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class PersonModel extends BaseModel implements Serializable {
@@ -39,7 +32,42 @@ public class PersonModel extends BaseModel implements Serializable {
 	@Email
 	private String email;
 
-//    @OneToOne(mappedBy = "person", fetch = FetchType.LAZY)
-//    private UserModel usersModel;
+//@OneToOne(mappedBy = "person", fetch = FetchType.LAZY)
+//private UserModel usersModel;
+		
+	
+	public PersonModel() {}
+			
+	public PersonModel(String name, String documento, @Email String email) {
+		super();
+		this.name = name;
+		this.documento = documento;
+		this.email = email;
+	}
+	
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 }

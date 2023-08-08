@@ -5,7 +5,7 @@
 alter session set NLS_SORT='BINARY_AI';
 alter session set NLS_COMP='LINGUISTIC';
 
-
+---
 *numeric(p,s)
 centenas -> 3
 mil -> 6 + casas decimais
@@ -14,6 +14,7 @@ bilhoes -> 12 ...
 trilhoes -> 15 ...
 qudrilhoes -> 18 ...
 
+---
 select 
 	row_number() over(order by 1)
 ,	sys_guid() UUID
@@ -22,6 +23,7 @@ select
 ,	lpad(1,3,'0')
 from dual;
 
+---
 UPDATE 
 (SELECT tabela_1.valor AS valor_OLD, tabela_2.valor as valor_novo
  FROM tabela_1
@@ -30,7 +32,7 @@ UPDATE
 ) tb
 SET tb.valor_OLD= tb.valor_novo
 
-
+---
 MERGE INTO target_table 
 USING source_table 
 ON search_condition
@@ -45,6 +47,32 @@ ON search_condition
 
 
 create table {nome-table} as select * from table;
+
+---
+define jobId = 'AD_VP';
+select '&jobId' valor from dual;
+select * from jobs where job_id = '&jobId';
+undefine jobId;
+
+---
+select * from user_objects order by object_type;
+select * form user_tables;
+select * form user_ricyclebin;
+
+---
+describe table_name;
+desc table_name;
+
+---
+q'[{string desejada com aspas}]
+initcap
+trim(';' from '{text a ser tratado}')
+---
+TNSNAMES/LISTENER
+...\oracle\21c\homes\OraDB21Home4\network\admin
+
+* listener.ora
+* tnsnames.ora
 
 =============================================
 =============================================
