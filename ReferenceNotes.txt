@@ -290,3 +290,12 @@ Text Filter
 
 =============================================
 =============================================
+*** JAVA ***
+
+#JBoss Tools
+https://tools.jboss.org/downloads/archives.html
+https://download.jboss.org/jbosstools/photon/stable/updates/
+
+
+=============================================
+=============================================
