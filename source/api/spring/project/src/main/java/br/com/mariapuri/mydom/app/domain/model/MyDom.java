@@ -19,7 +19,7 @@ import jakarta.validation.constraints.Size;
 @Audited(withModifiedFlag = true)
 //@EntityListeners(AuditingEntityListener.class)
 //@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class MyDomModel extends BaseModel implements Serializable {
+public class MyDom extends BaseModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@NotBlank
@@ -33,18 +33,31 @@ public class MyDomModel extends BaseModel implements Serializable {
 	@Size(max = 255)
 	private String removeColumnTest;
 
-		
-	public MyDomModel() {}
+
+	public MyDom() {}
+
+	public MyDom(
+			@NotBlank String name, 
+			@Size(max = 255) String description
+	) {
+
+		this.name = name;
+		this.description = description;
 	
-	public MyDomModel(@NotBlank String name, @Size(max = 255) String description,
-	    @Size(max = 255) String removeColumnTest) {
-		super();
+	}	
+	
+	public MyDom(
+			@NotBlank String name, 
+			@Size(max = 255) String description,
+	    @Size(max = 255) String removeColumnTest
+	) {
+
 		this.name = name;
 		this.description = description;
 		this.removeColumnTest = removeColumnTest;
-	}
 	
-
+	}	
+	
 	public String getName() {
 		return name;
 	}
@@ -68,5 +81,6 @@ public class MyDomModel extends BaseModel implements Serializable {
 	public void setRemoveColumnTest(String removeColumnTest) {
 		this.removeColumnTest = removeColumnTest;
 	}
+
 	
 }

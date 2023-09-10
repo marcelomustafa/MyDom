@@ -5,8 +5,8 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.mariapuri.mydom.app.domain.model.MyDomModel;
+import br.com.mariapuri.mydom.app.domain.model.MyDom;
 
-public interface MyDomRepository extends JpaRepository<MyDomModel, UUID> {
+public interface MyDomRepository extends JpaRepository<MyDom, UUID> {
 
 }

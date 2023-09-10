@@ -7,29 +7,34 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public abstract class BaseService<MODEL, REPOSITORY> {
+public abstract class BaseService<M, R> {
 
 	@Autowired
-	protected REPOSITORY repository;
+  protected R repository;
+
 
 	@SuppressWarnings("unchecked")
-	private JpaRepository<MODEL, UUID> getRepository() {
-		return (JpaRepository<MODEL, UUID>) repository;
+	private JpaRepository<M, UUID> getRepository() {
+		try {
+			return (JpaRepository<M, UUID>) repository;
+		} catch (Exception e) {
+			throw new RuntimeException("A repository type cast failure occurred.");
+		}
 	}
 
-	public List<MODEL> findAll() {
+	public List<M> findAll() {
 		return getRepository().findAll();
 	}
 
-	public Optional<MODEL> findById(UUID id) {
+	public Optional<M> findById(UUID id) {
 		return getRepository().findById(id);
 	}
 
-  public MODEL save(MODEL model) {
+  public M save(M model) {
     return getRepository().save(model); 
   }
   
-  public void delete(MODEL model) {
+  public void delete(M model) {
   	getRepository().delete(model);  
   }
   	

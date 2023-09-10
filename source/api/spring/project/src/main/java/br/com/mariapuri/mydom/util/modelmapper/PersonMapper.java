@@ -4,10 +4,10 @@ import org.springframework.stereotype.Component;
 
 import br.com.mariapuri.mydom.app.domain.dto.PersonDTO;
 import br.com.mariapuri.mydom.app.domain.model.PersonModel;
-import br.com.mariapuri.mydom.util.modelmapper.custom.BaseMapper;
+import br.com.mariapuri.mydom.util.modelmapper.custom.SimpleMapper;
 
 @Component
-public class PersonMapper extends BaseMapper<PersonModel, PersonDTO> {
+public class PersonMapper implements SimpleMapper<PersonModel, PersonDTO> {
 
 	@Override
 	public PersonDTO toDTO(PersonModel item) {

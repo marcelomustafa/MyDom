@@ -3,20 +3,32 @@ package br.com.mariapuri.mydom.app.service;
 import org.springframework.stereotype.Service;
 
 import br.com.mariapuri.mydom.app.domain.dto.MyDomDTO;
-import br.com.mariapuri.mydom.app.domain.model.MyDomModel;
+import br.com.mariapuri.mydom.app.domain.model.MyDom;
 import br.com.mariapuri.mydom.app.repository.mydom.MyDomRepository;
 import br.com.mariapuri.mydom.app.service.custom.BaseService;
+import br.com.mariapuri.mydom.util.modelmapper.MyDomMapperDTO;
 
-//@AllArgsConstructor
+
 @Service
-public class MyDomService extends BaseService<MyDomModel, MyDomRepository> {
+public class MyDomService extends BaseService<MyDom, MyDomRepository> {
 	
-	public MyDomDTO getMyDom() {
-		MyDomDTO appMyDomDto = new MyDomDTO();
-		appMyDomDto.setName("MyDom");
-		appMyDomDto.setDescription("Apresentação de estudo.");
-		return appMyDomDto;
+	private final MyDomMapperDTO myDomMapperDTO;
 	
+	public MyDomService(
+			MyDomMapperDTO myDomMapperDTO
+	) {
+		this.myDomMapperDTO = myDomMapperDTO;
 	}
 
+	
+	public MyDomDTO getMyDom() {
+		return myDomMapperDTO.apply(
+				new MyDom(
+						"MyDom",
+						"Apresentação de estudo."
+				)
+		);
+	}
+
+	
 }

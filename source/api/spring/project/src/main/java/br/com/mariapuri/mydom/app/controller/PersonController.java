@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.net.HttpHeaders;
@@ -33,7 +34,6 @@ import br.com.mariapuri.mydom.app.service.PersonService;
 import br.com.mariapuri.mydom.util.modelmapper.PersonMapper;
 import br.com.mariapuri.mydom.util.pagination.PaginationTools;
 
-//@AllArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/persons")
@@ -54,11 +54,11 @@ public class PersonController {
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping("/all")
 	public ResponseEntity<List<PersonDTO>> getAllPerson() {
-		var persons = personMapper.toCollectionDTO(personService.findAll());
+		var persons = personMapper.toDTOList(personService.findAll());
 		return ResponseEntity.status(HttpStatus.OK).body(persons);
 	}
 
-	@GetMapping("/paged")
+	@PostMapping("/paged")
 	public ResponseEntity<Page<PersonDTO>> filterPersonPaged(
 			@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
 			@RequestBody PersonDTO filter) {
@@ -128,7 +128,7 @@ public class PersonController {
 	@GetMapping("/report-of-persons")
 	public ResponseEntity<byte[]> getReportPerson(@RequestBody PersonDTO filter) throws Throwable  {
 		
-		var personDTO = personMapper.toCollectionDTO(personService.filter(filter));
+		var personDTO = personMapper.toDTOList(personService.filter(filter));
 		if(personDTO.isEmpty()) {
 			//new ThrowExceptionHandler();
 			return  ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
@@ -143,7 +143,7 @@ public class PersonController {
 	@GetMapping("/sheet-of-persons")
 	public ResponseEntity<byte[]> getSheetPerson(@RequestBody PersonDTO filter) throws Throwable  {
 
-		var personDTO = personMapper.toCollectionDTO(personService.filter(filter));
+		var personDTO = personMapper.toDTOList(personService.filter(filter));
 		if(personDTO.isEmpty()) {
 			//new ThrowExceptionHandler();
 			return  ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);

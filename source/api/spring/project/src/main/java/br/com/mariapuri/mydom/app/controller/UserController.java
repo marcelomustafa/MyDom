@@ -24,10 +24,9 @@ public class UserController {
 	@Autowired
 	private UserMapper userMapper;
 	
-	
 	@GetMapping("/all")
 	public ResponseEntity<List<UserDTO>> getAllUser() {
-		var users = userMapper.toCollectionDTO(userService.findAll());
+		var users = userMapper.toDTOList(userService.findAll());
 		return ResponseEntity.status(HttpStatus.OK).body(users);
 	}	
 	

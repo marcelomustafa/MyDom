@@ -1,23 +1,23 @@
 package br.com.mariapuri.mydom.util.modelmapper;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import br.com.mariapuri.mydom.app.domain.dto.MyDomDTO;
-import br.com.mariapuri.mydom.app.domain.model.MyDomModel;
-import br.com.mariapuri.mydom.util.modelmapper.custom.BaseMapper;
+import br.com.mariapuri.mydom.app.domain.model.MyDom;
+import br.com.mariapuri.mydom.util.modelmapper.custom.SimpleMapper;
 
 
-@Component
-public class MyDomMapper extends BaseMapper<MyDomModel, MyDomDTO> {
-
+@Service
+public class MyDomMapper implements SimpleMapper<MyDom, MyDomDTO> {
+	
 	@Override
-	public MyDomDTO toDTO(MyDomModel myDomModel) {
-		return modelMapper.map(myDomModel, MyDomDTO.class);
+	public MyDomDTO toDTO(MyDom item) {
+		return modelMapper.map(item, MyDomDTO.class);
 	}
 
 	@Override
-	public MyDomModel toModel(MyDomDTO myDomDTO) {
-		return modelMapper.map(myDomDTO, MyDomModel.class);
+	public MyDom toModel(MyDomDTO itemDTO) {
+		return modelMapper.map(itemDTO, MyDom.class);
 	}
-
+	
 }
