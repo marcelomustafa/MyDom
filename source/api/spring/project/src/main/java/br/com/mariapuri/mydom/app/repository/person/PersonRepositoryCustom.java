@@ -7,4 +7,7 @@ import br.com.mariapuri.mydom.app.domain.model.PersonModel;
 
 public interface PersonRepositoryCustom {
   public List<PersonModel> filter(PersonDTO filter);
+  
+
+  
 }

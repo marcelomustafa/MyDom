@@ -6,6 +6,12 @@ alter session set NLS_SORT='BINARY_AI';
 alter session set NLS_COMP='LINGUISTIC';
 
 ---
+
+D:\src\database\oracle\21c\homes\OraDB21Home4\network\admin
+- listener.ora
+- tnsnames.ora
+
+---
 *numeric(p,s)
 centenas -> 3
 mil -> 6 + casas decimais
@@ -47,6 +53,54 @@ ON search_condition
 
 
 create table {nome-table} as select * from table;
+---
+
+select
+  unidade.id
+, unidade.sigla
+, unidade.nome
+from unidade unidade
+start with unidade.id = '1'
+connect by  prior unidade.id = unidade.idPai
+
+
+ou 
+
+
+WITH RECURSIVE unidades_filhas AS (
+	SELECT * FROM unidade WHERE id = :id
+	UNION
+	SELECT u.* FROM unidade u
+	JOIN unidades_filhas uf ON u.idPai = uf.id
+) SELECT * FROM unidades_filhas
+
+---
+
+SELECT *
+FROM sua_tabela
+WHERE NLS_LOWER(seu_campo, 'NLS_SORT=GENERIC_M_CI')
+LIKE '%' || NLS_LOWER('sua_pesquisa', 'NLS_SORT=GENERIC_M_CI') || '%';
+
+ou 
+
+SELECT *
+FROM sua_tabela
+WHERE NLS_LOWER(TRANSLATE(seu_campo, 'áàãâéèêíïóôõöúçñ', 'aaaaeeeiiiooooucn'), 'NLS_SORT=BINARY_AI')
+LIKE '%' || NLS_LOWER(TRANSLATE('sua_pesquisa', 'áàãâéèêíïóôõöúçñ', 'aaaaeeeiiiooooucn'), 'NLS_SORT=BINARY_AI') || '%';
+
+ou 
+
+SELECT *
+FROM sua_tabela
+WHERE REGEXP_REPLACE(seu_campo, '[ÁÀÃÂÉÈÊÍÏÓÔÕÖÚÇÑ]', '', 1, 0, 'i')
+LIKE '%' || REGEXP_REPLACE('sua_pesquisa', '[ÁÀÃÂÉÈÊÍÏÓÔÕÖÚÇÑ]', '', 1, 0, 'i') || '%';
+
+ou 
+
+SELECT *
+FROM sua_tabela
+WHERE TRANSLATE(UPPER(seu_campo), 'ÁÀÃÂÉÈÊÍÏÓÔÕÖÚÇÑ', 'AAAAEEEIIOOOUCN')
+LIKE '%' || TRANSLATE(UPPER('sua_pesquisa'), 'ÁÀÃÂÉÈÊÍÏÓÔÕÖÚÇÑ', 'AAAAEEEIIOOOUCN') || '%';
 
 ---
 define jobId = 'AD_VP';
@@ -280,6 +334,36 @@ UserDetails userDetails =
 // userDetails.getPassword()
 // userDetails.getAuthorities()
 
+=============================================
+=============================================
+*** JPQL/CRETERIAQUERY ***
+
+---
+String sql = "UPDATE Pessoa SET cidade = :novaCidade WHERE idade < :idadeLimite AND nome LIKE :nome";
+Query query = entityManager.createNativeQuery(sql);
+query.setParameter("novaCidade", "Rio de Janeiro");
+query.setParameter("idadeLimite", 25);
+query.setParameter("nome", "%Santos%");
+int updatedRows = query.executeUpdate();
+
+
+ou
+
+String sql = "DELETE FROM Pessoa WHERE idade > ? AND cidade = ?";
+Query query = entityManager.createNativeQuery(sql);
+query.setParameter(1, 40);
+query.setParameter(2, "Belo Horizonte");
+int deletedRows = query.executeUpdate();
+
+ou 
+
+int rowsUpdated = entityManager.createNativeQuery(sqlUpdate)
+	.setParameter("novoStatus", novoStatus)
+	.setParameter("valorCriterio", valorCriterio)
+	.executeUpdate();
+
+---
+
 
 =============================================
 =============================================
@@ -296,6 +380,16 @@ Text Filter
 https://tools.jboss.org/downloads/archives.html
 https://download.jboss.org/jbosstools/photon/stable/updates/
 
+---
+if (obj instanceof MinhaClasse) {
+    // obj é uma instância de MinhaClasse ou de uma de suas subclasses
+}
+
+ou 
+
+if (obj instanceof MinhaClasse) {
+    // obj é uma instância de MinhaClasse ou de uma de suas subclasses
+}
 
 =============================================
 =============================================
