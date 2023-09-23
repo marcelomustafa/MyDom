@@ -229,6 +229,10 @@ ng new mydom -s=false -t=false -S=true --style="scss" --routing  --directory="."
 ng add ngx-bootstrap
 ng add @angular/material
 
+npm install ngx-bootstrap --save
+npm install @ng-bootstrap/ng-bootstrap --save
+
+
 
 ng update @angular/core@14 @angular/cli@14
 ng update @angular/material
