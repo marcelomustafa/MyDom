@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { AuthUser } from '@shared/auth/auth-user';
+import { AuthUser } from './shared/auth/auth-user';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   title = 'MyDom';
   user?: AuthUser;

@@ -1,4 +1,5 @@
 import { NgModuleRef, ApplicationRef } from '@angular/core';
+/*
 import { createNewHosts } from '@angularclass/hmr';
 
 export const hmrBootstrap = (module: any, bootstrap: () => Promise<NgModuleRef<any>>) => {
@@ -13,4 +14,4 @@ export const hmrBootstrap = (module: any, bootstrap: () => Promise<NgModuleRef<a
     makeVisible();
   });
 };
-
+*/
