@@ -1,0 +1,57 @@
+header {
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;  
+}
+
+main {
+  display: flex;
+  flex: 1;
+  position: fixed;
+  left: 15rem;
+  top: 9.65rem;
+  // color: aqua;
+  // background-color: burlywood;
+  // border-color: blue;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  padding: 0.265rem;
+}
+
+
+
+nav {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  position: fixed;
+  top: 3.65rem;
+  left: 15rem;
+  width: 100%;
+}
+
+aside {
+  background-color: #d3d3d3;
+  width: 15rem;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 3.65rem;
+}
+
+// .container {
+//   margin-left: 200px; /* largura do menu lateral */
+//   padding: 20px;
+// }
+

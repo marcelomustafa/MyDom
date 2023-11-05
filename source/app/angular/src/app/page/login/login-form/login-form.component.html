@@ -1,5 +1,75 @@
-<p>login-form works!</p>
- <div class="col-md-6 offset-md-3 mt-5">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h2>Login</h2>
+
+  <section href="User name login" id="userNameLogin">
+    <label 
+      for="username" 
+      class="form-label"
+    >
+      Nome de usuário
+    </label>
+    <input 
+      type="text" 
+      id="username" 
+      name="username" 
+      formControlName="username"
+      class="form-control" 
+      required aria-label="Nome de usuário" 
+      aria-required="true"
+      [ngClass]="{ 'is-invalid': submitted && getLoginForm['username'].errors }"
+    >
+    <div *ngIf="submitted && getLoginForm['username'].errors" class="invalid-feedback">                     
+      <div *ngIf="getLoginForm['username'].errors['required']">Username is required</div> 
+    </div>  
+  </section>
+
+  <section href="User password login" id="userPasswordLogin">
+    <label for="password" class="form-label">Senha</label>
+    <div style="position: relative;">
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          formControlName="password"
+          required aria-label="Senha" 
+          aria-required="true"
+          class="form-control" 
+          [ngClass]="{ 'is-invalid': submitted && getLoginForm['password'].errors }"          
+        >
+        <button type="button" onclick="togglePassword()" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background-color: transparent; border: none; cursor: pointer;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" style="color: black;" viewBox="0 0 16 16">
+                <path d="M7.077.144c-.39-.39-1.024-.39-1.414 0l-.795.796c-2.733 2.733-2.733 7.17 0 9.903l.795.796c.39.39 1.024.39 1.414 0l.795-.796c1.657-1.657 2.574-3.865 2.574-6.203s-.917-4.546-2.574-6.203zm-3.462 3.462c.81-.81 2.192-.81 3.003 0l.133.134c.607.607.94 1.414.94 2.262s-.333 1.655-.94 2.262l-.133.134c-.81.81-2.192.81-3.003 0l-.133-.134c-.607-.607-.94-1.414-.94-2.262s.333-1.655.94-2.262l.133-.134z" />
+                <path fill-rule="evenodd" d="M8 4.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm-1 3a1 1 0 1 1 2 0 1 1 0 0 1-2 0z" />
+            </svg>
+        </button>
+        <div *ngIf="submitted && getLoginForm['password'].errors" class="invalid-feedback">
+          <div *ngIf="getLoginForm['password'].errors['required']">Password is required</div> 
+        </div>
+    </div>
+  </section>
+
+  <button type="submit" [disabled]="loading" class="btn btn-primary" (click)="onSubmit()">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+    Entrar
+  </button>
+
+  <button class="btn btn-primary" (click)="singUp()">
+    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+    Sing Up
+  </button>  
+
+  <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{ error || 'teste' }}</div>
+
+</form>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <!-- <div class="col-md-6 offset-md-3 mt-5">
     <div class="alert alert-info">
         Username: test<br />
         Password: test
@@ -31,10 +101,10 @@
             </form>
         </div>
     </div>
-  </div>
+  </div> -->
 
-<!--
-<div class="col-md-12">
+
+<!-- <div class="col-md-12">
   <div class="card card-container">
     <img
       id="profile-img"
@@ -106,4 +176,4 @@
       Logged in as {{ roles }}.
     </div>
   </div>
-</div> -->
+</div>  -->

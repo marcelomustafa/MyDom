@@ -1,11 +1,13 @@
 <div id="app">
 
-  <nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="user">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/" routerLinkActive="active">Home</a>
-      <button class="btn btn-link nav-item nav-link" (click)="logout()">Logout</button>
-    </div>
-  </nav>
+<!--   
+  <nav>
+    <ul>
+        <li><a href="#section1">Seção 1</a></li>
+        <li><a href="#section2">Seção 2</a></li>
+        <li><a href="#section3">Seção 3</a></li>
+    </ul>
+  </nav>  -->
 
 
   <!-- <nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -51,9 +53,44 @@
     </ul>
   </nav> -->
 
-  <div class="container">
+
+  <!-- <header>
+    <h1>Título da Página</h1>
+  </header>
+
+  <nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="user">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/" routerLinkActive="active">Home</a>
+      <button class="btn btn-link nav-item nav-link" (click)="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <main>  
+
+    <aside>
+      <h2>Menu Lateral</h2>
+      <ul>
+          <li><a href="#item1">Item 1</a></li>
+          <li><a href="#item2">Item 2</a></li>
+          <li><a href="#item3">Item 3</a></li>
+      </ul>
+    </aside>  
+
     <router-outlet></router-outlet>
+
+  </main>
+
+  <footer>
+    <p>Rodapé da Página</p>
+ </footer>  -->
+
+  <div class="container">
+    <router-outlet></router-outlet>    
+    <!-- <app-home-form></app-home-form> -->
+    <!-- <router-outlet></router-outlet> -->
   </div>
+
+
 
   <!-- <router-outlet></router-outlet> -->
 </div>

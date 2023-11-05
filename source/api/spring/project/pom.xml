@@ -294,15 +294,22 @@
 		<dependency>
 		    <groupId>org.hibernate.orm</groupId>
 		    <artifactId>hibernate-core</artifactId>
-		    <!--<version>6.2.6.Final</version>-->
+		    <version>6.2.6.Final</version>
 		</dependency>	
 		
 		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-entitymanager</artifactId>
 		    <version>5.6.15.Final</version>
-		</dependency>				
-				
+		</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>org.hibernate</groupId>-->
+<!--			<artifactId>hibernate-jpamodelgen</artifactId>-->
+<!--			<version>6.0.0.Final</version>-->
+<!--			<scope>provided</scope>-->
+<!--		</dependency>-->
+
 		<!-- ### FIM MIGRATION ### -->
 		
 		
@@ -315,7 +322,41 @@
 		</dependency>
 		
 		<!-- ### FIM MapStruct ### -->
-		
+
+
+		<!-- ### INICIO JUnit ### -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.6.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.6.2</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- ### FIM JUnit ### -->
+
+
+
+
+		<!-- ### FIM Selenium ### -->
+
+	<!--	<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.13.0</version>
+		</dependency>-->
+
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-chrome-driver</artifactId>
+		</dependency>
+		<!-- ### FIM Selenium ### -->
 
 	</dependencies>
 
@@ -333,6 +374,20 @@
 					</excludes>
 				</configuration>
 			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-compiler-plugin</artifactId>-->
+<!--				<version>3.8.1</version>-->
+<!--				<configuration>-->
+<!--					<annotationProcessorPaths>-->
+<!--						<path>-->
+<!--							<groupId>org.hibernate</groupId>-->
+<!--							<artifactId>hibernate-jpamodelgen</artifactId>-->
+<!--							<version>6.0.0.Final</version>-->
+<!--						</path>-->
+<!--					</annotationProcessorPaths>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 

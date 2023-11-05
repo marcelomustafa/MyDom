@@ -23,6 +23,10 @@ import { HomeFormComponent } from './home-form/home-form.component';
     //FormsModule,
     //ReactiveFormsModule,
     //HttpClientModule
+  ],
+  exports:[
+    HomeFormComponent,
   ]
+
 })
 export class HomeModule { }

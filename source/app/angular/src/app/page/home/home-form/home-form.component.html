@@ -1,1 +1,41 @@
-<p>home-form works!</p>
+
+  <header class="main-content">
+    
+    <h1>Título da Página</h1>
+
+
+
+  </header>
+
+
+  <nav class="top-menu">
+    <ul>
+      <li><a href="#">Início</a></li>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+  </nav>
+
+
+  <aside class="side-menu">
+    <ul>
+      <li><a href="persons">Persons</a></li>
+      <li><a href="users">Users</a></li>
+      <li><a href="#" (click)="logout()">Sair</a></li>
+    </ul>
+  </aside>
+
+
+  <main class="main-content">
+
+
+  
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+
+  </main>
+
+  <footer class="footer-content">
+    <p>myDom Tech by Maria Puri</p>
+  </footer>  

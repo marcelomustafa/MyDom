@@ -8,18 +8,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocalDateTimePipe } from './shared/pipe/local-date-time.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './shared/auth/auth.interceptor';
+import { HomeModule } from './page/home/home.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LocalDateTimePipe    
+    LocalDateTimePipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgbModule     
+    NgbModule,
+    HomeModule,
   ],
   providers: [
     AuthInterceptor 

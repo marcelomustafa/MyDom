@@ -73,7 +73,7 @@ export class LoginFormComponent implements OnInit {
       return;
     }
 
-    this.error = "x";
+    this.error = "";
     this.loading = true;
     this.authService
       .login(this.getLoginForm['username'].value , this.getLoginForm['password'].value)
@@ -108,12 +108,14 @@ export class LoginFormComponent implements OnInit {
       //     this.isLoginFailed = true;
       //   }
       // });
-
-
-
   }
 
   reloadPage(): void {
     window.location.reload();
   }  
+
+  singUp(): void{
+    this.router.navigate(['/register']);
+  }
+
 }

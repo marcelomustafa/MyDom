@@ -11,14 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import br.com.mariapuri.mydom.app.domain.model.UserModel;
 
 class UserServiceTest {
-
-  @Autowired
-  private UserService userService;
-
   @Test
   void testGetUserById() {
+      UserService userService = new UserService();
+
       // Preparação
-      UUID userId = UUID.fromString("1L");
+      UUID userId = UUID.randomUUID();
 
       // Execução
       Optional<UserModel> user = userService.findById(userId);

@@ -142,10 +142,29 @@ SELECT
 ,	CURRENT_TIMESTAMP	
 ; 
 
+=============================================
+=============================================
+*** H2 ***
+
+
+
 
 
 =============================================
 =============================================
+*** cucumber ***
+
+
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-java8</artifactId>
+    <version>${cucumber.version}</version>
+    <scope>test</scope>
+</dependency>
+=============================================
+=============================================
+
+
 *** NODE.js ***
 
 node -v
@@ -394,6 +413,45 @@ ou
 if (obj instanceof MinhaClasse) {
     // obj é uma instância de MinhaClasse ou de uma de suas subclasses
 }
+
+=============================================
+=============================================
+*** CMD ***
+
+dir      -> listar conteudo da pasta
+cd       -> troca de diretório
+cd .     -> diretorio atual
+cd ..    -> volta ao  diretorio (apenas um) anterior
+cd ..\.. -> volta dois diretorios anteriores
+cd /	 -> diretorio raiz
+tree	 -> mostra a estrutura de pasta do sistema
+mkdir    -> criar novo diretorio
+type	 -> exibir conteudo do arquivo
+help ??? -> ajuda
+move	 -> mover arquivos
+more	 -> exibe conteudo do arquivo paginado
+copy	 -> copia arquivos
+rename	 -> renomear arquivo ou diretorio
+del	/ del *.?    -> apagar arquivo ou diretorio
+cls				 -> lipar tela de cmd
+fc				 -> compara arquivos
+systeminfo		 -> exibe informações do sistema
+rmdir			 -> remove um diretorio
+shutdown		 -> deslicar ou reinicar o pc
+date			 -> exibir e alterar a data
+find			 -> busca uma sequencia de texto em um ou mais arquivos
+exit 			 -> encerra o terminal
+tar -cf          -> compactar arquivos
+tar -tf          -> listar aquivos compactar arquivos
+tar -xf          -> extrair aquivos compactar arquivos
+tar /?			 -> help
+*** SCRIPT *.bat ***
+@echo off
+echo 		-> saida texto no console
+pause		-> aguarda interação do usuario
+
+??? 2> erros.txt -> retorna o erro pra outro arquivo. {0-> entrada / 1-> saida / 2-> erro}
+IF %ERRORLEVEL% NEQ 0(echo "Erro na execucao") -> exibir mensagem caso tenha erro
 
 =============================================
 =============================================

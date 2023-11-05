@@ -8,9 +8,9 @@ import { AuthUser } from './shared/auth/auth-user';
 })
 
 export class AppComponent {
+
   title = 'MyDom';
   user?: AuthUser;
-
 
   // private roles: string[] = [];
   // isLoggedIn = false;
@@ -64,4 +64,5 @@ export class AppComponent {
     // this.router.navigate(['/login']);
 
   }
+
 }
