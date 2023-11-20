@@ -229,6 +229,14 @@ flutter doctor --android-licenses
 =============================================
 *** ANGULAR ***
 
+    {
+      "name": "Launch Chrome",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}"
+    },   
+
 ng version
 
 npm install -g @angular/cli
@@ -296,10 +304,21 @@ lsb_release -a
 
 =============================================
 =============================================
+*** NVM ***
+
+https://github.com/coreybutler/nvm-windows/releases/tag/1.1.11
+
+nvm list
+nvm install vxx.xx.x
+nvm use vxx.xx.x
+
+=============================================
+=============================================
 *** NPM ***
 
 npm -version
 npm update -g
+npm install -g npm@latest
 
 
 =============================================
