@@ -5,6 +5,8 @@ import { PersonFormComponent } from '../person/person-form/person-form.component
 import { AuthGuard } from '@app/shared/auth/auth.guard';
 import { UserFormComponent } from '../user/user-form/user-form.component';
 import { DashboardHomeFormComponent } from '../dashboard/dashboard-home/dashboard-home-form/dashboard-home-form.component';
+import { PersonListComponent } from '../person/person-list/person-list.component';
+import { UserListComponent } from '../user/user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -12,8 +14,8 @@ const routes: Routes = [
     component: HomeFormComponent,
     children:[
       { path: 'home', component: DashboardHomeFormComponent , canActivate: [AuthGuard]},
-      { path: 'persons', component: PersonFormComponent , canActivate: [AuthGuard]},
-      { path: 'users', component: UserFormComponent , canActivate: [AuthGuard]},
+      { path: 'persons', component: PersonListComponent , canActivate: [AuthGuard]},
+      { path: 'users', component: UserListComponent , canActivate: [AuthGuard]},
     ]
   }
 ];

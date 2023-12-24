@@ -10,10 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './shared/auth/auth.interceptor';
 import { HomeModule } from './page/home/home.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    LocalDateTimePipe,
+    LocalDateTimePipe
   ],
   imports: [
     BrowserModule,
@@ -21,7 +22,10 @@ import { HomeModule } from './page/home/home.module';
     BrowserAnimationsModule,
     HttpClientModule,
     NgbModule,
-    HomeModule,
+    HomeModule
+  ],
+  exports:[
+    
   ],
   providers: [
     AuthInterceptor 

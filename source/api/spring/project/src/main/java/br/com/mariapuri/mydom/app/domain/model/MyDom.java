@@ -1,5 +1,6 @@
 package br.com.mariapuri.mydom.app.domain.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import org.hibernate.envers.AuditTable;
@@ -20,6 +21,7 @@ import jakarta.validation.constraints.Size;
 //@EntityListeners(AuditingEntityListener.class)
 //@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class MyDom extends BaseModel implements Serializable {
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	@NotBlank

@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container {
+  display: flex;
+}
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// .grid{
+//   display: grid;
+//   grid-template-rows: 80px auto 80px;
+//   grid-template-columns: 20% auto 20%;
+//   height: 100vh;
+// }
+
+// @media (max-width: 480px) {
+//   .grid{
+//     grid-template-rows: 80px 80px auto 80px 80px;
+//     grid-template-columns: 1fr;
+//   }
+//   aside,
+//   main {
+//     grid-column: 1 / 4;
+//   }
+// }
+
+
+header,
+footer {
+  background: #C08BFD;
+  color: #fff;
+  text-align: center;
+  position: fixed;
+  height: 1.5rem;
+  width: 100%; 
+  //padding: 10px;  
+  //grid-column: 1 / 4;
+}
+
+
+header {
+  height: 4rem;
+  left: 0;
+  top: 0;  
+}
+
+footer {
+  left: 0;
+  bottom: 0;
+}
+
+
+.left-sidebar {
+  order: -1; /* Move a barra lateral esquerda para a esquerda do conteúdo principal */
+}
+
+.right-sidebar {
+  order: -1; /* Move a barra lateral esquerda para a esquerda do conteúdo principal */
+}
+
+
+aside {
+  background: #F6C356;
+  height: 100%;
+  //width: 1 / 4;
+  width: 25%;
+  //display: flex;
+  //padding: 10px;  
+}
+
+aside .left-sidebar {
+  order: -1; /* Move a barra lateral esquerda para a esquerda do conteúdo principal */
+}
+
+aside .right-sidebar {
+  order: -2; /* Move a barra lateral esquerda para a esquerda do conteúdo principal */
+}
+
+main {
+  background: #B2EE94;
+  display: flex;
+  flex: 1;   
+  position: fixed; 
+}

@@ -1,17 +1,8 @@
 package br.com.mariapuri.mydom.app.repository.person;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.mariapuri.mydom.app.domain.model.PersonModel_;
-import br.com.mariapuri.mydom.app.domain.model.UserModel;
-import br.com.mariapuri.mydom.app.domain.model.UserModel_;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.util.StringUtils;
-
 import br.com.mariapuri.mydom.app.domain.dto.PersonDTO;
 import br.com.mariapuri.mydom.app.domain.model.PersonModel;
+import br.com.mariapuri.mydom.app.domain.model.UserModel;
 import br.com.mariapuri.mydom.util.ToolUtils;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -20,8 +11,11 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
-import javax.persistence.criteria.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 //@AllArgsConstructor
 public class PersonRepositoryCustomImpl implements PersonRepositoryCustom{
